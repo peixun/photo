@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/anli.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/info.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/ss/Booking.css" rel="stylesheet" type="text/css" />
+<title>{$title}</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<SCRIPT language=javascript>
+var APP	 =	 '__APP__';
+var PUBLIC	 =	 '__PUBLIC__';
+</SCRIPT>
+<script src="__PUBLIC__/js/slider.js"></script> 
+
+</head>
+<body>
+ <include file="Public:top" />
+<div class="container">
+	
+	<div class="info_rt1">
+		
+		<div class="info_mtit"><a href="javascript:void(0);">预约报名</a></div>      
+		<div class="info_main"><form action="__APP__/Booking/companyBookInset" method="post" id="form">
+		<div class="bm_left">
+        	<div class="baoming_type"><img src="__PUBLIC__/images/bm01.gif" /><p><input name="type" type="radio" value="1" <eq name="type" value="1"> checked="checked" </eq> />&nbsp;免费量房</p></div>
+            <div class="baoming_type"><img src="__PUBLIC__/images/bm03.gif" /><p><input name="type" type="radio" value="2" <eq name="type" value="2"> checked="checked" </eq> />&nbsp;免费预算</p></div>
+            <div class="baoming_type"><img src="__PUBLIC__/images/bm02.gif" /><p><input name="type" type="radio" value="3" <eq name="type" value="3"> checked="checked" </eq> />&nbsp;免费设计</p></div>
+            <div class="baoming_type"><img src="__PUBLIC__/images/bm04.gif" /><p><input name="type" type="radio" value="4" <eq name="type" value="4"> checked="checked" </eq> />&nbsp;免费咨询</p></div>
+			<table cellpadding="0" cellspacing="0" border="0" class="info_bd">
+				<tr>
+					<td width="40%" align="right">手机号码：</td>
+					<td width="60%"><input type="text" class="bg_txt" name="mobile"  value="{$user.mobile}" id="mobile" /><span id="mobile_tips"></span></td>
+				</tr>
+                
+				<tr>
+					<td width="40%" align="right">您的称呼：</td>
+					<td width="60%"><input type="text" class="bg_txt"  name="user_name" id="user_name" value="{$user.user_name}"/><span id="user_name_tips"></span></td>
+				</tr>
+				<tr>
+					<td width="40%" align="right"></td>
+					<td width="60%"> <input type="hidden" name="select_uid" value="{$id}" /><input type="image" src="__PUBLIC__/images/bman.jpg" /></td>
+				</tr>
+			</table>
+            </div>
+            </form>
+            <div class="bm_right">
+            <div class="rt_c">
+			<div class="web_bm1">
+				<div class="wb_tit"><img src="__PUBLIC__/images/tip1.jpg" /></div>
+				<div class="wb_tt"><span>最新报名<em>{$bookcout}</em>人</span><span>30天报名<em>{$bookcout}</em>人</span></div>
+				<div class="wb_cont" id="wb_conts">
+                	<ul class="wb_list" >
+                    	<volist name="book" id="vo">
+                    	<li  class="bm_content">
+                        	<span style="width:130px; float:right;">{$vo.mobile|StringsubMobile}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.create_time|toDate="m/d"}</span><span style="">{$vo.user_name|Stringsubname}</span>
+                        </li>
+                           </volist>
+                    </ul>
+					
+				</div>
+				
+			</div>
+		</div>
+            </div>
+            <div class="clear"></div>
+		</div>
+	</div>
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+</body>
+</html>

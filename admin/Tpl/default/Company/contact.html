@@ -1,0 +1,59 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<load href="__TMPL__ThemeFiles/Js/jquery.js" />
+<load href="__TMPL__ThemeFiles/Js/jquery.json.js" />
+
+<div id="main" class="main" >
+<div class="content">
+<div class="title">品牌管理 [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+<form method='post' id="form" name="form" action="{:u('Cmpany/doBrand')}"  enctype="multipart/form-data">
+<table cellpadding="0" cellspacing="0" width=100% >
+	<tr>
+		<td valign="top">
+		<!-- 普通信息 -->
+			<table cellpadding=0 cellspacing=0 class="dataEdit">
+				<tr>
+			<td class="tRight" width="80">中文文章内容：</td>
+			<td class="tLeft" >
+			<script type='text/javascript'>KE.show({id : '_editor_1',cssPath : '/admin/Tpl/default/ThemeFiles/Css/style.css',skinType: 'tinymce',allowFileManager : true});</script><div  style='margin-bottom:5px;widht:100% '><textarea id='_editor_1' name='content' style='width:650px;height:200px;visibility:hidden;' >{$vo.content}</textarea> </div>
+			</td>
+		</tr>
+		<tr>
+			<td class="tRight" width="80">英文文章内容：</td>
+			<td class="tLeft" >
+			<script type='text/javascript'>KE.show({id : '_editor',cssPath : '/admin/Tpl/default/ThemeFiles/Css/style.css',skinType: 'tinymce',allowFileManager : true});</script><div  style='margin-bottom:5px;widht:100%;  '><textarea id='_editor' name='en_content' style='width:650px;height:200px;visibility:hidden;' >{$vo.en_content}</textarea> </div>
+			</td>
+		</tr>
+
+
+				<tr>
+					<td class="tRight">{$Think.lang.ARTICLE_PREVIEW}：</td>
+					<td class="tLeft" >	
+						<img width="180px;" height="180px;" src="__PUBLIC__/upload/cmpany/{$vo.images}" />
+					</td>
+				</tr>
+				<tr>
+					<td class="tRight">{$Think.lang.ARTICLE_PREVIEW}：</td>
+					<td class="tLeft" >
+						<input type="file" name="images" class="bLeft" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+					<td class="center"><div style="width:85%;margin:5px">
+					<input name="click_count" value="{$vo.click_count}" type="hidden" />
+					<input name="id" id="goods_id" value="{$vo.id}" type="hidden" />
+					<input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" > 
+					</div></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+</div>
+
+

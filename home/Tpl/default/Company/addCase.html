@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/info.css" rel="stylesheet" type="text/css" />
+<title>案例管理</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<link rel="stylesheet" href="__PUBLIC__/kindeditor/themes/default/default.css" />
+<script charset="utf-8" src="__PUBLIC__/kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="__PUBLIC__/kindeditor/lang/zh_CN.js"></script>
+
+<script type="text/javascript">
+	KindEditor.ready(function(K) {
+		K.create('textarea[name="content_1"]', {
+			allowFileManager : true
+		});
+	});
+</script>
+<script>
+var APP="__APP__";
+</script>
+<script src="__PUBLIC__/js/jquery-1.7.js"></script>
+<script type="text/javascript">
+     
+            $(document).ready(function() {
+				$("#cate_pid").change(function(){
+				var id = $(this).val();
+				if(id != ''){
+						$.post(APP+"/Tool/get_huxing_name", {id:id}, function(res){
+									
+									$("#cate_id").html(res);
+							});
+					}
+		});
+
+}); 
+
+</script>
+
+
+<script type="text/javascript">
+ var count=1;
+	function addFj(){   
+	if(count<8)
+	{
+	  var oTb = document.getElementById("tb1");
+	
+	  var oTr = oTb.insertRow(-1);
+	 
+	  var num = parseInt(document.picFrom.fjCnt.value)+1; 
+	  var no = parseInt(document.picFrom.fjCnt.value);
+	  document.picFrom.fjCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>图片：</span><input id='file' name='images[]' type=file   style=\"border:#CCC solid 1px; height:25px;\" /> <input type=button onclick='return delFj(this)' value='删除' class=\"log_btn11\"><br /><br /><span>说明：<input maxLength=50  type='text' name='imgname[]' name=photo_narrate   class=\"bg_txt\"  /><br /><br /><div id=tip class=red></div><div id=preview></div>";
+      count ++;
+	  return false;
+	}else
+	{
+		alert("最多只能上传8张图片!");
+		}
+	}
+	function delFj(obj,No){
+		var num = parseInt(document.picFrom.fjCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.picFrom.fjCnt.value=num-1;
+		}
+		count --;
+		return false;
+	}
+	
+
+  </script>
+
+</head>
+<body>
+ <include file="Public:top1" />
+<div class="container">
+	<div class="info_lf">
+		<h2><img src="__PUBLIC__/images/mypage.jpg" /></h2>
+		<div class="info_c">
+			<div class="info_tit">公司信息管理</div>
+            <p ><a href="__APP__/Company/news">活动管理</a></p>
+			<p class="clk" ><a href="__APP__/Company/mycase">案例管理</a></p>
+			<p><a href="__APP__/Company/designer">设计师管理</a></p>	
+            <p><a href="__APP__/Company/construction">在建工地</a></p> <p><a href="__APP__/Company/reservation">预约工地</a></p> <p><a href="__APP__/Company/book">预约管理</a></p><p><a href="__APP__/Company/watchlist">收藏管理</a></p>   <p><a href="__APP__/Company/certificate">证书管理</a></p> <p><a href="__APP__/Company/service">服务承诺</a></p> <p><a href="__APP__/Company/contact">联系方式</a></p>			
+			<div class="info_tit">账号管理</div>
+			<p ><a href="__APP__/Company/management">公司信息</a></p>
+			<p><a href="__APP__/Company/password">修改密码</a></p>
+		</div>
+	</div>
+	<div class="info_rt">
+		<div class="info_rtit">
+			<div class="inrt_n">案例管理</div>
+			<div class="inrt_r">首页&nbsp;&nbsp; &gt; <a href="javascript:void(0);">个人中心</a> &gt; <a href="javascript:void(0);" >案例管理</a></div>
+		</div>
+		<div class="info_msg"><span class="i_msg2" style="float:right; width:100px;"> <a href="__APP__/Company/mycase">返回案例列表</a></span><span class="i_msg1"><b>添加案例信息</b></span></div>
+		<div class="info_cont" style="min-height:300px;">
+		<form action="__APP__/Company/insertCase" method="post" id="picFrom" name="picFrom" enctype="multipart/form-data">
+<table  cellpadding="0" cellspacing="0" border="0" class="info_bd" width="100%">
+  <tr>
+    <td width="80" align="left">案例标题</td>
+    <td><input type="text" name="name_1" class="bg_txt"  /></td>
+  </tr>
+  <tr>
+  	<td  width="80" align="left">属于社区</td>
+    <td><select  name="cate_pid" id="cate_pid" class="bg_txt" style="width:130px;">
+                  <option value="-1">选择社区</option>
+                  <volist name="cate" id="cate"> <option   
+                    value="{$cate.id}">{$cate.name_1}
+                    </option>
+                  </volist> 
+              </select>
+               <select name="cate_id" id="cate_id" class="bg_txt" style="width:125px;">
+                  <option  value='-1'>选择户型</option>            
+                </select> </td>
+  </tr>
+   <tr>
+    <td  width="80" align="left">设计师</td>
+    <td><select  name="desinger_id" id="desinger_id" class="bg_txt" style="width:225px;">
+                  <option value="-1">选择设计师</option>
+                  <volist name="designer" id="designer"> <option   
+                    value="{$designer.id}">{$designer.name_1}
+                    </option>
+                  </volist> 
+              </select></td>
+  </tr>
+   <tr>
+    <td width="80" align="left">预算价格</td>
+    <td><input type="text" name="budget" class="bg_txt"  /></td>
+  </tr>
+   <tr>
+    <td width="80" align="left">案例面积</td>
+    <td><input type="text" name="area" class="bg_txt"  />平方M为单位</td>
+  </tr>
+  <tr>
+    <td width="80" align="left">案例风格</td>
+    <td><input type="text" name="styles" class="bg_txt"  /></td>
+  </tr>
+  <tr>
+    <td width="80" align="left">标签</td>
+    <td><input type="text" name="tags" class="bg_txt"  />多个标签,分开 有效的设置标签有利于很容易被用户搜索到</td>
+  </tr>
+  <tr>
+    <td  width="80" align="left">案例介绍</td>
+    <td><textarea id='content_1' name='content_1' style='width:620px;height:300px;visibility:hidden;' ></textarea></td>
+  </tr>
+ 	<tr>
+    <td>案例图片</td>
+    <td>
+              <div class="row_right">
+             <table id="tb1" border=0 cellspacing=0 cellpadding=3 >
+	 
+	<tr  > 
+	<td  >
+	<span>图片：</span><input id="Filedata"   name="images[]"  type=file value="上 传"  style="border:#CCC solid 1px; height:25px;" />&nbsp;<input type=button onclick='return delFj(this)' class="log_btn11" value='删除'><br><br>
+	说明：<input  type="text" name='imgname[]'    class="bg_txt"   /> <br />
+<br />
+	</td>
+  
+	</tr> 
+
+	</table>
+    <input type="button" onclick="return addFj()" class="log_btn11" value="添加照片" /><input type="hidden" name="fjCnt" value="" /><br /></td>
+    </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="submit" value="保存" class="log_btn11" />&nbsp;<input type="reset" value="取消" class="log_btn11" /></td>
+  </tr>
+</table>
+</form>
+		</div>
+	</div>
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+</body>
+</html>

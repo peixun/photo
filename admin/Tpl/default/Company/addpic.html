@@ -1,0 +1,145 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<load href="__TMPL__ThemeFiles/Js/jquery.js" />
+<load href="__TMPL__ThemeFiles/Js/jquery.json.js" />
+<load href="__TMPL__ThemeFiles/Js/model.js" />
+<script type="text/javascript" src="__TMPL__ThemeFiles/Js/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__ThemeFiles/Js/calendar/calendar.css' />
+<load href='__TMPL__ThemeFiles/Js/swfupload/swfupload.js' />
+<load href='__TMPL__ThemeFiles/Js/swfupload/goodsupload/swfupload.queue.js' />
+<load href='__TMPL__ThemeFiles/Js/swfupload/goodsupload/fileprogress.js' />
+<load href='__TMPL__ThemeFiles/Js/swfupload/goodsupload/handlers.js' />
+<load href='__TMPL__ThemeFiles/Js/goods.js' />
+<load href='__TMPL__ThemeFiles/Css/jqModal.css' />
+<load href='__TMPL__ThemeFiles/Js/jqModal.js' />
+
+<script type="text/javascript">
+var session_id = '{$session_id}';
+var default_lang_id = '{$default_lang_id}';
+var lang_ids = '{$lang_ids}';
+var lang_names = '{$lang_names}';
+var ATTR_TIPS = '{%ATTR_TIPS}';
+var EDIT_SUCCESS = '{%EDIT_SUCCESS}';
+var SELECT_SPEC_TYPE = '=={%SELECT_SPEC_TYPE}==';
+
+var GOODS_SPEC_ITEM_EXIST = '{%GOODS_SPEC_ITEM_EXIST}';
+var EXIST_SAME_SPEC = '{%EXIST_SAME_SPEC}';
+var CLOSE = '{%CLOSE}';
+
+
+var DEFAULT_LANG_ID = '{$DEFAULT_LANG_ID}';var lang_ids = '{$lang_ids}';
+var lang_names = '{$lang_names}';
+var DIY_URL = '{%DIY_URL}';
+</script>
+
+<script type="text/javascript">
+ var count=1;
+	function addFj(){   
+	if(count<8)
+	{
+	  var oTb = document.getElementById("tb1");
+	
+	  var oTr = oTb.insertRow(-1);
+	 
+	  var num = parseInt(document.regForm.fjCnt.value)+1; 
+	  var no = parseInt(document.regForm.fjCnt.value);
+	  document.regForm.fjCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>图片：</span><input id='file' name='images[]' type=file   style=\"border:#CCC solid 1px; height:25px;\" /> <input type=button onclick='return delFj(this)' value='删除' class=\"button small\"><br /><br /><span>说明：<input maxLength=50  type='text' name='imgname[]' name=photo_narrate   class=\"bLeft\"  /><br /><br /><div id=tip class=red></div><div id=preview></div>";
+      count ++;
+	  return false;
+	}else
+	{
+		alert("最多只能上传8张图片!");
+		}
+	}
+	function delFj(obj,No){
+		var num = parseInt(document.regForm.fjCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.regForm.fjCnt.value=num-1;
+		}
+		count --;
+		return false;
+	}
+	
+
+  </script>
+  
+  <script type="text/javascript">
+ var counts=1;
+	function addFjs(){   
+	if(counts<8)
+	{
+	  var oTb = document.getElementById("tb2");
+	
+	  var oTr = oTb.insertRow(-1);
+	 
+	  var num = parseInt(document.regForm.fjCnts.value)+1; 
+	  var no = parseInt(document.regForm.fjCnts.value);
+	  document.regForm.fjCnts.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>qq号码：<input  type=\"text\" name='qq[]'  class=\"bg_txt\"   /> <input type=button onclick='return delFjs(this)' value='删除' class=\"log_btn11\"> <br /></span>";
+      count ++;
+	  return false;
+	}else
+	{
+		alert("最多只能上传8张图片!");
+		}
+	}
+	function delFjs(obj,No){
+		var num = parseInt(document.regForm.fjCnts.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.regForm.fjCnts.value=num-1;
+		}
+		count --;
+		return false;
+	}
+	
+
+  </script>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+//指定当前组模块URL地址 
+var PUBLIC = '__PUBLIC__';
+//-->
+</SCRIPT>
+
+
+<div id="main" class="main" >
+<div class="content">
+<div class="title">添加企业照片[ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+  <form action="{:u('Company/insertPic')}" method="post" id="regForm" name="picFrom" enctype="multipart/form-data">
+ <p class="title_show" style="margin-left:30px; font-size:14px; font-weight:800;">企业照片</p> 
+         <div  class="piclist">
+         	<ul><volist name="pic" id="pic">
+            	<li><img src="__PUBLIC__/upload/company/{$pic.images}" width="100" height="100" /><br />
+<a href="{:u('Company/picDelete',array('id'=>$pic['id']))}">删除</a></li></volist>
+            </ul>
+         </div>
+         <div  style="clear:both"></div>
+         <DIV>
+         <table id="tb1" border=0 cellspacing=0 cellpadding=3 >
+	 
+	<tr  > 
+	<td  >
+	<span>图片：</span><input id="Filedata"   name="images[]"  type=file value="上 传"  style="border:#CCC solid 1px; height:24px;" />&nbsp;<input type=button onclick='return delFj(this)' class="button small" value='删除'><br><br>
+	说明：<input  type="text" name='imgname[]'   class="bLeft"   /> <br />
+<br />
+	</td>
+  
+	</tr> 
+
+	</table>
+    
+    <p>  <input type="button" onclick="return addFj()" class="button small" value="添加照片" /><input type="hidden" name="fjCnt" value="" /></p>
+ <p style="margin-top:10px;">  <input type="hidden" value="{$id}" name="id" />
+	<input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> </p>
+    </form>
+    </DIV>
+</div>

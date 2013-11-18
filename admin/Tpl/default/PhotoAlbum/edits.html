@@ -1,0 +1,104 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">更新相片 [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+  <SCRIPT LANGUAGE="JavaScript">
+
+var URL = '__URL__';
+var APP	 =	 '__APP__';
+var PUBLIC = '__PUBLIC__';
+
+</SCRIPT>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/kindeditor/kindeditor.js"></script>
+		<!--<script>
+		 $(document).ready(function() {
+			
+        	 
+				$(".deals_rate_list").click(function(){
+				var temp = $(this);
+				var id = temp.attr("id");
+				$.get(URL+'/delete/id/'+id, function(data){
+						var item = data;
+						 alert(data);
+							if(data==1)
+							{
+								alert("删除成功!");
+								}
+							});	
+		
+ 
+			});
+			});
+        </script>-->
+   <script type="text/javascript">
+
+    KE.show({
+        id : 'content1',
+        cssPath : './index.css'
+    });	
+	function addFj(){ 
+	  var oTb = document.getElementById("tb1");
+	
+	  var oTr = oTb.insertRow(-1);
+	 
+	  var num = parseInt(document.form1.fjCnt.value)+1; 
+	  var no = parseInt(document.form1.fjCnt.value);
+	  document.form1.fjCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>图片：</span><input id='file' name='images[]' type=file  size='70' /> <input type=button onclick='return delFj(this)' value='删除'><br /><span>说明：<input maxLength=50  type='text' name='imgname[]' size=70 name=photo_narrate    /> <br /><div id=tip class=red></div><div id=preview></div>";
+	  return false;
+	}
+	function delFj(obj,No){
+		var num = parseInt(document.form1.fjCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.fjCnt.value=num-1;
+		}
+		return false;
+	}
+  </script>
+ 
+<form method='post' id="form1" name="form1" action="{:u('PhotoAlbum/updates')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+<tr  >
+  <td class="tRight" width="120">相片列表</td>
+  
+  <td colSpan=2> <volist name="photoList" id="photoList"><div  style="float:left"><img width="80px" height="80px" src="./Public/upload/album/{$photoList.images}" /><p align="center">{$photoList.img_name}&nbsp;</p><p align="center"><a href="admin.php?m=PhotoAlbum&a=delete&id={$photoList.id}" >删除</a><a href="admin.php?m=PhotoAlbum&a=getalbumimg&img={$photoList.images}&id={$photoList.pic_id}" > 封面</a> </p></div>&nbsp;&nbsp;</volist></td>
+  
+</tr>
+	<tr c >
+    <td class="tRight" width="120">上传相片：</td>
+    <td colSpan=2>
+	<table id="tb1" border=0 cellspacing=0 cellpadding=3 >
+	 
+	<tr  >
+   
+	<td  >
+	<span>图片：</span><input id="Filedata"   name="images[]" size=70 type=file value="上 传" name="Filedata " />   <input type=button onclick='return delFj(this)' value='删除'><br><br>
+	说明：<input maxLength=50  type="text" name='imgname[]' size=70 name=photo_narrate     /> 
+	<div id="tip" class=red></div>
+	<div id="preview"></div>
+	</td>
+  
+	</tr> 
+
+	</table>
+    <a href="#" onclick="return addFj()">添加一张图片</a><input type="hidden" name="id" value="{$id}" /><input type="hidden" name="fjCnt" value="" />
+	</td>
+  </tr>&nbsp;</td>
+	  </tr>
+	<td></td>
+	  <td class="center"><div style="width:85%;margin:5px"> 
+	    <input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" >
+	    </div></td>
+</tr>
+
+</table>
+</form>
+
+</div>
+</div>

@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/anli.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/casefocus.css" rel="stylesheet" type="text/css" />
+
+<title>案例详情</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<script>
+function addAttention(id,com_id){
+	$.post('__APP__/Tool/addAttention',{id:id,model:'case',com_id:com_id,'rand':Math.random()},function(aa){
+		if(aa=='nologin'){
+			alert("请登录，再收藏!");
+			window.location.href = '__APP__/Public/login';
+		}else if(aa=='failed'){
+			
+			alert("收藏失败!");
+		}else if(aa=='ok'){
+			
+			alert("收藏成功!");
+		}else{
+			alert("已收藏,不需要重复收藏!");
+		}
+	});
+}
+
+function add_design(id,com_id,designer_id){
+	$.post('__APP__/Tool/addDesignBook',{id:id,com_id:com_id,designer_id:designer_id,'rand':Math.random()},function(aa){
+		if(aa=='nologin'){
+			alert("未登陆,不能预约本案设计!");
+			window.location.href = '__APP__/Public/login';
+		}else if(aa=='ok'){
+			alert("预约成功!");
+		}else if(aa=='have'){
+			alert("已经预约本案设计师了!");
+		}else{
+			alert("预约失败!");
+		}
+	});
+}
+	
+</script>
+<script>
+	function caseshow(sid)
+      {
+        var subitem=document.getElementById("caselist"+sid);
+		var subitem1=document.getElementById("caselist1"+sid);
+
+      //subitem.style.display=subitem.style.display=='none'?'':'none';
+      if(subitem.style.display=='none'){
+        	subitem.style.display='';
+			subitem1.style.display='none';
+
+       }
+       else{
+       subitem.style.display='none';
+	   subitem1.style.display='';
+
+      }
+     }
+	 function say(){
+		alert("所有的案例都显示了");	 
+	}
+</script>
+</head>
+<body>
+ <include file="Public:top" />
+<div class="container">
+	<div class="anli_gg"><eq name="$coms.logo" value=""><img src="__PUBLIC__/upload/logo/thum/{$coms.logo}" /><else /><img src="__PUBLIC__/images/al_logo.jpg" /></eq></div>
+	<include file="Public:meum" />
+	<div class="al_lf">
+		<h2>{$Case.name_1}【<a href="javascript:void(0);" onclick="addAttention({$Case.id},{$comid});"><font style="color:#FFFFFF;">收藏</font></a>】</h2>
+		<div class="al_lfcont">
+			<div class="base_msg">
+				<div class="bm_pic">
+                <div id="banner"> 
+                    <div id="banner_bg"></div> 
+                    
+                    <div id="banner_info"></div> 
+                    <ul> 
+                    	<volist name="pics1" id="pics1">
+                        	<li>{$i}</li> 
+                		</volist>
+                    </ul> 
+                    <div id="banner_list"> 
+                    	<volist name="pics" id="vo">
+                        <a href="javascript:void(0);" >                 
+                        <img src="__PUBLIC__/upload/case/l_{$vo.images}" /></a>
+                        </volist>
+                    </div> 
+          </div>
+           <script type="text/javascript">
+						var t = n = 0, count; 
+						$(document).ready(function(){ 
+						count=$("#banner_list a").length; 
+						$("#banner_list a:not(:first-child)").hide(); 
+						$("#banner_info").html($("#banner_list a:first-child").find("img").attr('alt')); 
+						$("#banner_info").click(function(){window.open($("#banner_list a:first-child").attr('href'), "_blank")}); 
+						$("#banner li").click(function() { 
+						var i = $(this).text() - 1;//获取Li元素内的值，即1，2，3，4 
+						n = i; 
+						if (i >= count) return; 
+							$("#banner_info").html($("#banner_list a").eq(i).find("img").attr('alt')); 
+							$("#banner_info").unbind().click(function(){window.open($("#banner_list a").eq(i).attr('href'), "_blank")}) 
+							$("#banner_list a").filter(":visible").fadeOut(500).parent().children().eq(i).fadeIn(1000); 
+							$(this).css({"background":"#631b03",'color':'#fff'}).siblings().css({"background":"#a26721",'color':'#fff'}); 
+						}); 
+							t = setInterval("showAuto()", 4000); 
+							$("#banner").hover(function(){clearInterval(t)}, function(){t = setInterval("showAuto()", 4000);}); 
+						}) 
+						
+						function showAuto() 
+						{ 
+						n = n >=(count - 1) ? 0 : ++n; 
+							$("#banner li").eq(n).trigger('click'); 
+						} 
+                    </script> 
+                
+           
+                
+                </div>
+				<div class="bm_txt">
+					<h3>本案基本情况：</h3>
+					<p>社区：<em><a href="__APP__/Shequ/{$Case.cate_pid}">{$Case.cate_pid|getHuxing}</a></em></p>
+					<p>户型：<em>{$Case.cate_id|getHuxing}</em></p>
+					<p>面积：<em>{$Case.area}</em></p>    
+					<p>风格：<em>{$Case.styles}</em></p>
+					<p>预算：<em>{$Case.budget}</em></p>
+					<p>设计师：<em>{$Case.desinger_id|getDesinger}</em></p>
+					<div class="bm_btn"><a href="__APP__/Booking/company/id/{$comid}"><img src="__PUBLIC__/images/free_yy.jpg" /> </a></div>
+				</div>
+			</div>
+			<div><img src="__PUBLIC__/images/alcs.jpg" /></div>
+			
+			<div class="al_lf_c" style="text-align:left; padding:10px; margin-bottom:20px; line-height:20px;">{$Case.content_1}</div>
+			<div><img src="__PUBLIC__/images/xsaltit.jpg" /></div>
+			<div class="al_lf_c">
+				<div class="xs_mod" id="caselist1">
+					<volist name="gxlist" id="sub">
+					<div class="xs_mod_m">
+						<a href="__APP__/BusinessChannel/caseshow/id/{$sub.uid}_{$sub.id}.shtml"><img src="__PUBLIC__/upload/case/s_{$sub.id|getCasePic}" /></a>
+						<p><a href="__APP__/BusinessChannel/caseshow/id/{$sub.uid}_{$sub.id}.shtml">{$sub.name_1}</a></p>
+					</div>
+                    </volist>
+					<div class="sub_more"><eq name="caseshow" value="2"><a href="javascript:void(0);" onclick="say()">显示全部案例</a><else /><a href="javascript:void(0);" onclick="caseshow(1)">显示全部案例</a></eq></div>
+				</div>
+                <div class="xs_mod" id="caselist11" style="display:none">
+					<volist name="gxlist1" id="sub">
+					<div class="xs_mod_m">
+						<a href="__APP__/BusinessChannel/caseshow/id/{$sub.uid}_{$sub.id}.shtml"><img src="__PUBLIC__/upload/case/s_{$sub.id|getCasePic}" /></a>
+						<p><a href="__APP__/BusinessChannel/caseshow/id/{$sub.uid}_{$sub.id}.shtml">{$sub.name_1}</a></p>
+					</div>
+                    </volist>
+					<div class="sub_more"><a href="javascript:void(0);" onclick="caseshow(1)">收回全部案例</a></div>
+				</div>
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg" /></div>
+			<div class="gs_tit"><span>（共 <em>{$count}</em> 条）</span>{$company.company_name}公司点评</div>
+			<div class="al_lf_c">
+				<div class="mess_mod">
+					<volist name="commentlist" id="commentlist">
+                    <div class="mess_m_line">
+						<div class="mess_m_pic"><img src="__PUBLIC__/images/house.jpg" /></div>
+						<div class="mess_m_txt">
+							<div class="mtit"><span>{$commentlist.create_time|toDate="Y-m-d"}<em> </em></span>{$commentlist.uid|getUname}</div>
+							<div class="mcont"> {$commentlist.content}</div>
+						</div>
+					</div>
+					</volist>
+                    
+					<div id="pagavation">{$page}</div>
+				</div>
+				<div class="wypl_m">
+                <form name="from12" id="form12" action="__APP__/BusinessChannel/inserComment" method="post" onsubmit="return checkformMessage();">
+					<div class="wyplm_c">
+						<h4>我要评论</h4>
+						<div class="mes_k">
+							<div class="m_txtt">留言内容</div>
+							<div class="m_txtc"><textarea class="mk_tax" id="content" name="content" onclick="if(this.value == '请留言')this.value=''">请留言</textarea></div>
+						</div>
+						<div class="mk_btn"><input name="id" type="hidden" value="{$Case.id}" /><input type="submit" class="mkbtn" value="案例评论" /></div>
+					</div>
+                  </form>
+				</div>				
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg" /></div>
+		</div>
+	</div>
+	<div class="al_rt">
+		<div class="rt_log">
+			<a href="__APP__/Public/login" class="rl1">会员登录</a><a href="__APP__/Public/reg" class="rl2">注册</a><a href="__APP__/Booking" class="rl3">预约</a>
+		</div>
+		<div  class="rt_c">
+			<h5>{$company.company_name}</h5>
+			<div class="lx_one">
+				<div><img src="__PUBLIC__/images/lx_top.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="lxphone"> {$company.mobile}</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_line.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="qq2">
+						<div class="qq2_c">
+                        <eq name="showdiv" value="1">
+                        <p>客服1：<a href="javascript;"><img src="__PUBLIC__/images/zx_qq.jpg" align="absbottom" /></a></p>
+                        <else/>
+						 <volist name="qq" id="qq">
+						<p style="line-height:24px; height:24px;">客服{$i}：<a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$qq.qq}&amp;Site=得利网&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=2:{$qq.qq}:42" height="20" border="0" alt="{$qq.qq}" align="middle" /></a>
+</p>
+                        </volist>
+                        </eq>
+						</div>
+					<div><img src="__PUBLIC__/images/qq2bot.jpg" /></div>
+					</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_line.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="lxdadd" style="text-align:left;">{$company.address}</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_bot.jpg" /></div>
+                <div class="gd_tip">
+				<eq name="Addressdiv" value="1"><volist name="comaddress" id="vo"><div class="gd_mo"><a href="__APP__/BusinessChannel/contact/id/{$comid}#{$vo.name}">{$vo.name}</a></div></volist></eq>
+                </div>
+			</div>
+		</div>
+		<div  class="rt_c">
+			<h5>本案设计师</h5>
+			<div class="sjs_sq">
+				<div class="sjs_m"><a href="__APP__/BusinessChannel/designershow/id/{$comid}_{$desinger.id}.shtml"><eq name="desinger.image" value=""><img src="__PUBLIC__/images/header1.jpg" /><else/><img src="__PUBLIC__/upload/designer/small/{$desinger.image}" /></eq></a></div>
+				<div class="sj_tit">设计师：<em><a href="__APP__/BusinessChannel/designershow/id/{$comid}_{$desinger.id}.shtml">{$desinger.name_1}</a></em></div>
+				<p>所属公司：{$company.company_name}</p>
+				<p>擅长风格：
+                {$desinger.good_style}
+                </p>
+				<p>成功案例：{$desinger.id|getDesignCase}套</p>
+				<div class="sj_yj"><a href="javascript:add_design({$Case.id},{$comid},{$desinger.id});"><img src="__PUBLIC__/images/yj_btn.jpg" /></a></div>
+			</div>
+		</div>
+		<div class="al_rm" style="height:250px;">sfd</div>
+		<div class="clear11"></div>
+		<div class="rt_c">
+			<h1>促销活动</h1>
+			<div class="al_sq" style="height:150px;">
+				<volist name="article" id="article">
+				<p <eq name="i" value="6">style="border-bottom:none;"</eq>><a href="__APP__/BusinessChannel/discountshow/id/{$article.uid}_{$article.id}.shtml">{$article.name_1||utf_substr=30}</a></p>
+                </volist>
+			</div>
+		</div>
+	</div>	
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+<script>
+	function checkformMessage()
+	{
+	var title = $("#content").attr("value");
+	if(title==='')
+	{ 	
+		alert("评论内容不能为空！");
+		return false;
+	}
+		if(title==='请留言')
+	{ 	
+		alert("请正确的输入留言信息！");
+		return false;
+	}
+	
+	}
+</script>
+</body>
+</html>

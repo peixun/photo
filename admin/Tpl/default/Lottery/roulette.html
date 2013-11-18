@@ -1,0 +1,81 @@
+<tagLib name="eyoo" />
+<table border="0" cellpadding="0" cellspacing="1" class="lottery_table">
+	<tr>
+    	<th width="80">Flash背景：</th>
+    	<td style="text-align:left;">
+        	<input type="file" name="bg_file" size="60" />
+            <if condition="$lottery.background neq ''">
+            &nbsp;<a href="{$lottery.background}" target="_blank">浏览</a>
+            </if>
+        </td>
+    </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" class="lottery_table">
+     <tr>
+    	<td colspan="2" style="color:#f00; text-align:left;">
+        	请参照下面的图片序号设置各奖项；<br />
+            奖品类型/值：除实体奖品外，其他类型奖品由程序处理发放。<br />
+            　　　　　　&nbsp;代金券：请将值设为对应的代金券ID；（必须为正整数）<br />
+            　　　　　　&nbsp;会员积分：请将值设为对应要增加的积分；（必须为正整数）<br />
+            　　　　　　&nbsp;会员余额：请将值设为对应要增加的余额；（必须为正整数）<br />
+            奖品数量：设为 -1 则不限制中奖数量；（必须为整数）<br />
+            每日开奖数量：每天可以抽中此奖品的最大数量，设为 0 则不限制每天中奖数量，直到发完所有奖品为止；（必须为正整数）<br />
+            出奖开始日期：从指定日期开始，用户才可以抽中此奖品；（格式为：2010-01-01 01:01）<br />
+            中奖概率：为万分位，如果不让用户抽中此奖品，请设为0；（必须为正整数）<br />
+            设为必中：如果用户没有抽中奖品，则从设为必中的奖项中随机返回一个奖品；
+        </td>
+    </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" class="lottery_table">
+    <tr>
+    	<th width="50">序号</th>
+        <th>名称</th>
+        <th width="130">奖品类型/值</th>
+        <th width="80">奖品总量</th>
+        <if condition="$lottery.id gt 0">
+        <th width="70">出奖总量</th>
+        </if>
+        <th width="100">每日开奖数量</th>
+        <if condition="$lottery.id gt 0">
+        <th width="90">今日开奖数量</th>
+        </if>
+        <th width="110">出奖开始日期</th>
+        <th width="80">中奖概率&#8241;</th>
+        <th width="60">设为必中</th>
+    </tr>
+    <foreach name="lottery.items" item="litem">
+	<tr>
+    	<td>{$litem.index}<input name="index{$litem.index}[index]" type="hidden" value="{$litem.index}" /></td>
+        <td><input name="index{$litem.index}[name]" type="text" value="{$litem.name}" style="width:90%"/></td>
+        <td>
+        	<select name="index{$litem.index}[type]">
+            	<option value="0">实体奖品</option>
+                <option value="1" <if condition="$litem.type eq 1">selected</if>>代金券</option>
+                <option value="2" <if condition="$litem.type eq 2">selected</if>>会员积分</option>
+                <option value="3" <if condition="$litem.type eq 3">selected</if>>会员余额</option>
+            </select>&nbsp;/
+            <input name="index{$litem.index}[val]" type="text" value="{$litem.val}" style="width:30px"/>
+        </td>
+        <td><input name="index{$litem.index}[total_num]" type="text" value="{$litem.total_num}" style="width:60px"/></td>
+        <if condition="$lottery.id gt 0">
+        <td>{$litem.wcount}</td>
+        </if>
+        <td><input name="index{$litem.index}[day_num]" type="text" value="{$litem.day_num}" style="width:60px"/></td>
+        <if condition="$lottery.id gt 0">
+        <td>{$litem.dcount}</td>
+        </if>
+        <td valign="middle">
+        	<input type="text" name="index{$litem.index}[begin_time]" id="begin_time_{$litem.index}" style="width:100px" onfocus="return showCalendar('begin_time_{$litem.index}', '%Y-%m-%d %H:%M', false, false, 'begin_time_{$litem.index}');" value="{$litem.begin_time|toDate='Y-m-d H:i'}">
+        </td>
+        <td><input name="index{$litem.index}[probability]" type="text" value="{$litem.probability}" style="width:60px;" /></td>
+        <td><input name="index{$litem.index}[status]" type="checkbox" value="1" <if condition="$litem.status eq 1">checked</if> /></td>
+    </tr>
+    </foreach>
+</table>
+<table border="0" cellpadding="0" cellspacing="1" class="lottery_table">
+    <tr>
+    	<td>
+        	<img src="/Public/lottery/roulette/demo.jpg" />
+        </td>
+    </tr>
+</table>

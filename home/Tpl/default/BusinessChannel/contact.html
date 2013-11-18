@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/anli.css" rel="stylesheet" type="text/css" />
+<title>{$title}</title>
+<script src="__PUBLIC__/js/jquery-1.3.2.min.js"></script> 
+  <script type="text/javascript" src="__PUBLIC__/js/hd.js"></script>
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<style>
+.caselist{
+	padding: 20px 32px;
+}
+.fendian_contact{ margin-top:20px; margin-left:20px;}
+.fendian_contact li{
+	border: 1px dashed #9F8571;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    width: 45%;
+}
+</style>
+</head>
+<body>
+ <include file="Public:top" />
+<div class="container">
+	<div class="anli_gg"><eq name="$coms.logo" value=""><img src="__PUBLIC__/upload/logo/thum/{$coms.logo}" /><else /><img src="__PUBLIC__/images/al_logo.jpg" /></eq></div>
+	<include file="Public:meum" />
+
+	<div class="al_lf">
+		<h2>联系方式</h2>
+		<div class="al_lfcont">
+		<div><img src="__PUBLIC__/images/zs_tit.jpg" /></div>	
+			<div class="al_lf_c">
+				<div class="cx_c" style="min-height:1068px;">
+					<div class="jd_cont">
+                    {$companys.contact}
+						
+					</div>
+                    <p style="margin-left:18px; margin-top:30px; font-size:14px; font-weight:500;">总店地址：{$coms.address}</p>
+                   <p>
+                   <div class="clear"></div>
+                   <div class="fendian_contact">
+                    <ul>
+                    <volist name="comaddress1" id="vo">
+                    		 <li>
+                            	<p>{$vo.name}</br>
+                                地址：{$vo.address} </br>
+                                电话：{$vo.tel}</p>
+                            </li>
+                    </volist>
+                   </ul>
+                    </div>
+                   </p>
+                  
+				</div>
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg" /></div>	
+		
+            
+          
+          
+		</div>
+	</div>
+	<include file="Public:com_right" />		
+</div>
+ <include file="Public:footer" />
+</body>
+</html>

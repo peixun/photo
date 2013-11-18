@@ -1,0 +1,168 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<div id="main" class="main" >
+<script type="text/javascript" src="__TMPL__ThemeFiles/Js/calendar.php?lang=zh-cn" ></script>
+<script type="text/javascript" src="__TMPL__ThemeFiles/Js/jquery.js"></script>
+<SCRIPT language=javascript type=text/javascript src="__PUBLIC__/js/city2.js"></SCRIPT>
+<load href='__TMPL__ThemeFiles/Js/calendar/calendar.css' />
+
+<script>
+ $(document).ready(function() {
+	$("#cate_pid").change(function(){	 
+		
+		
+			$.post(APP+'/admin.php?m=Course&a=getCate',
+				{cate_pid:$(this).val()},
+				function(data)
+				{
+		              $('#cate_id').html("");
+					if(data){
+					  eval('var dataobj='+data);
+					  parseDataLogAction(dataobj);
+					}
+					});
+})
+function parseDataLogAction(dataobj)
+{
+
+	var obj=dataobj.data;
+ 
+  
+    	var str='';
+	for(var i = 0 ; i < obj.length ; i++)
+	{
+		str+='<option   name = "cate_id" value="'+obj[i].id+'">'+obj[i].name_1+'</option>';
+	}
+  
+	$('#cate_id').html(str);
+}
+});
+</script>
+<div class="content">
+<div class="title">{$Think.lang.ADD_DATA} [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+<form method='post' id="form" name="form" action="{:u('Course/update')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+<tr>
+  <td class="tRight" width="120">课程名称：</td>
+  <td width="437" class="tLeft" >
+    <input name="title" type="text" class="bLeft" value="{$course.title}" />
+    </td>
+</tr>
+
+<tr>
+  <td class="tRight"><span class="tLeft">开课地区：</span></td>
+  <td class="tLeft" ><select name="province">
+    
+      {$province}
+    
+  </select>
+    --
+    <select 
+        name="city">
+      
+      {$city}
+    
+    </select>
+    <script language="JavaScript" type="text/javascript">
+              new PCAS("province","city","{$course.province}","{$course.city}");
+           </script>
+    &nbsp;</td>
+</tr>
+<tr>
+  <td class="tRight" width="120">课程分类：</td>
+  <td class="tLeft" >
+    <select name="pid" id="cate_pid">
+      <option value="-1">请选择</option>
+      <volist name="catelist" id="vo">
+        <option value="{$vo.id}" <eq name="vo.id" value="$pid.pid"> selected="selected"</eq> >{$vo.name_1}</option>
+        </volist>
+      </select> 	&nbsp;&nbsp;&nbsp;	<select name="cate_id" id="cate_id">
+        <volist name="cate" id="var">
+          <option <eq name="var.id" value="$course.cate_id"> selected="selected"</eq> value="{$var.id}" >{$var.name_1}</option>
+          </volist>
+        </select>
+    
+    
+    </td>
+</tr>
+<tr>
+	<td class="tRight" width="120">授课讲师：</td>
+	<td class="tLeft" >
+		<input name="teacher" type="text" class="bLeft" value="{$course.teacher}" />
+	</td>
+</tr>
+
+<tr>
+			<td class="tRight">课程开始时间：</td>
+			<td class="tLeft" >
+				<INPUT  name="start_time" TYPE="text"  class="bLeft" id="promote_begin_time" value="{$course.start_time|toDate}">
+				<input type="button" name="btn_promote_begin_time" id="btn_promote_begin_time" onclick="return showCalendar('promote_begin_time', '%Y-%m-%d %H:%M', false, false, 'btn_promote_begin_time');" value="{$Think.lang.SELECT}" class="button"/>
+			</td>
+		</tr>
+<tr>
+			<td class="tRight">课程结束时间：</td>
+			<td class="tLeft" >
+				<INPUT  name="end_time" TYPE="text"  class="bLeft" id="promote_end_time" value="{$course.end_time|toDate}">
+				<input type="button" name="btn_promote_end_time" id="btn_promote_end_time" onclick="return showCalendar('promote_end_time', '%Y-%m-%d %H:%M', false, false, 'btn_promote_end_time');" value="{$Think.lang.SELECT}" class="button"/>
+			</td>
+</tr>
+<tr>
+	<td class="tRight" >讲师头像：</td>
+	<td class="tLeft" ><input type="file" name="teacher_img" class="bLeft" /><img width="100" height="100" src="./Public/Uploads/{$course.teacher_img}" /></td>
+</tr>
+
+<tr>
+	<td class="tRight" >报名热线：</td>
+	<td class="tLeft" ><input name="phone" type="text" class="bLeft" value="{$course.phone}" /></td>
+</tr>
+<tr>
+  <td class="tRight" >开课地点：</td>
+  <td class="tLeft" ><input name="address" type="text" class="bLeft" value="{$course.address}" /></td>
+</tr>
+<tr>
+  <td class="tRight" >适合层面：</td>
+  <td class="tLeft" ><input name="suitable_for_level" type="text" class="bLeft" value="{$course.suitable_for_level }" /></td>
+</tr>
+<tr>
+  <td class="tRight" >课程价格：</td>
+  <td class="tLeft" ><input name="price" type="text" class="bLeft" value="{$course.price}" /></td>
+</tr>
+<tr>
+  <td class="tRight" >关键字：</td>
+  <td class="tLeft" ><input type="text" name="keywords" class="bLeft"   value="{$course.keywords}"/></td>
+</tr>
+<tr>
+  <td class="tRight" >促销信息：</td>
+  <td class="tLeft" ><input name="sales_promotton" type="text" class="bLeft" value="{$course.sales_promotton }" /></td>
+</tr>
+<tr> 
+  <td class="tRight" >课程内容：</td>
+  <td class="tLeft" > <eyoo:editor  name="content" type="KindEditor" id="editora"  style="width:650px;height:200px;visibility:hidden;" /></td>
+</tr>
+<tr>
+  <td class="tRight" >讲师简介：</td>               
+  <td class="tLeft" > <eyoo:editor  name="teacher_introduction" type="KindEditor" id="editorb" style="width:650px;height:200px;visibility:hidden;" /></td>
+</tr>
+<tr>
+  <td class="tRight" >课程目标：</td>
+  <td class="tLeft" > <eyoo:editor  name="course_goal" type="KindEditor" id="editorc"  style="width:650px;height:200px;visibility:hidden;" /></td>
+</tr>
+<tr>
+  <td class="tRight" >培训对象：</td>
+  <td class="tLeft" > <eyoo:editor  name="whom" type="KindEditor"  style="width:650px;height:200px;visibility:hidden;" /></td>
+</tr>
+<tr>
+  <td class="tRight" >&nbsp;</td>
+  <td class="tLeft" >
+    <input type="hidden" name="id" value="{$course.id}" />
+   	<div style="width:85%;margin:5px">
+      <input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" > 
+      </div></td>
+</tr>
+</table>
+</form>
+
+</div>
+</div>

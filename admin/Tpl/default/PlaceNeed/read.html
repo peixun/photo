@@ -1,0 +1,52 @@
+<tagLib name="eyoo" />
+<include file="../Public/header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">查看答疑信息 [ <A HREF="__URL__">返回列表</A> ]</div>
+<div id="result" class="result none"></div>
+<TABLE cellpadding=3 cellspacing=3 width="100%"> 
+<TR>  
+	<TD ><H2>{$vo.cate_pid|getAskCate} <span style="color:gray;font-weight:normal">[{$vo.create_time|toDate='Y-m-d H:i:s'}]</span></H2> </TD>
+</TR>
+<tr>
+<td>{$page}</td>
+</tr>
+<TR>
+	<TD >
+	<div style="border:1px dotted silver;padding:5px;margin:5px">{$vo.user_id|getUserName}<br/>{$vo.content}</div> 	
+	
+     
+    <eq name="inlist.status" value="0">
+    <present name="comments">
+		<div id="comments">
+			<volist name="comments" id="comment" >
+				<div style="border:1px dotted silver;padding:5px;margin:5px">
+				<H2>回复时间: <span style="color:gray;font-weight:normal">[{$comment.create_time|toDate='Y-m-d H:i:s'}]</span></H2>		
+				发表人:{$comment.user_id|getUserName}<br/>回复{$i}:{$comment.content}
+                </div> 	
+			</volist>
+		</div>
+	</present>
+	<div id="comment">
+
+        <form action="{:u('Ask/reply')}" method="post">
+			<eyoo:editor  name="contents" type="KindEditor" id="contents" style="width:400px;height:200px;visibility:hidden;" />
+			<br/>	
+            <input type="hidden" name="ask_id" value="{$vo.id}">		
+			<INPUT TYPE="submit" value="回 复" class="button" />
+		</form>
+       <else />
+       <div style="border:1px dotted silver;padding:5px;margin:5px">
+				<H2>回复时间: <span style="color:gray;font-weight:normal">[{$jialist.create_time|toDate='Y-m-d H:i:s'}]</span></H2>		
+				发表人:{$jialist.user_id}<br/>回复{$i}:{$jialist.content}
+                </div> 	
+       </eq>
+        
+          
+	</div></TD>
+</TR> 
+</TABLE>
+
+
+</div>
+</div>

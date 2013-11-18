@@ -1,0 +1,77 @@
+<SCRIPT src="__PUBLIC__/js/jQselect.js" type=text/javascript></SCRIPT>
+	
+	<SCRIPT type=text/javascript>
+	$(document).ready(function() {
+		$("#c").selectbox();
+	});
+	</SCRIPT>
+<SCRIPT src="__PUBLIC__/js/superfish.js" type=text/javascript></SCRIPT>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.bgiframe.min.js"></script> 
+<div class="header">
+<form method="post" name="frm" id="frm" action="__APP__/Index/dosearch" >
+	<div class="hd_top">
+		<div class="logo"><a href="__APP__/"><img src="__PUBLIC__/images/logo.jpg" /></a></div>
+		<div class="search">
+        	
+<DIV class=searchBar style="width:390px;">                  
+            <DIV class=select>
+        				<SELECT id=c style="DISPLAY: none" name="type"> 
+        					<OPTION value=1 selected>搜索案例</OPTION> 
+                            <OPTION value=2>搜索社区</OPTION> 
+                            <OPTION value=3>搜索公司</OPTION>
+                            <OPTION value=4>搜索资讯</OPTION>
+                            </SELECT> 
+         			</DIV>
+		<DIV class=text><INPUT class=s_t  onblur="if(this.value==''){this.value='请输入关键字';this.style.color='#aaa'}"  onfocus="if(this.value=='请输入关键字'){this.value='';this.style.color='#666'}" 
+value="请输入关键字" name="keyword">
+		 </DIV>
+		<div style="float:right;"><input type="image" src="__PUBLIC__/images/btn.gif" /></div>
+	</DIV>
+    </div>
+	</div>
+    </form>
+    <DIV id=toplink>
+<SCRIPT type=text/javascript>
+// initialise plugins
+   $(document).ready(function(){ 
+        $("ul.sf-menu").superfish().find('ul').bgIframe({opacity:false}); 
+    }); 
+
+</SCRIPT>
+
+<UL class=sf-menu>
+  <LI><A href="__APP__/" >首页</A> </LI>
+   <li class="img"><img src="__PUBLIC__/images/libg.jpg">
+  
+  <LI><A href="__APP__/Case" >案例中心</A> 
+  </LI>
+   <li class="img"><img src="__PUBLIC__/images/libg.jpg"></li>
+ 
+  <LI><A href="__APP__/Company/showlist" >装修公司</A> 
+    <li class="img"><img src="__PUBLIC__/images/libg.jpg"></li>
+ </LI>
+  <LI><A href="__APP__/Shequ" >社区分类</A> 
+ 	 <UL>
+  	<volist name="xiaoqu" id="vos">
+    <LI><A href="__APP__/Shequ/index/cid/{$vos.id}" >{$vos.name}</A> 
+    <UL>
+     <volist name="vos['shequ']" id="vo_shequ">
+      <LI><A href="__APP__/Shequ/{$vo_shequ.id}.shtml" >{$vo_shequ.name_1}</A> </LI>
+    </volist>
+      </UL>
+    </LI>
+    </volist>
+    </UL></LI>
+  <li class="img"><img src="__PUBLIC__/images/libg.jpg"></li>
+  <LI><A href="__APP__/News">热点促销</A> 
+   
+  </LI>
+  <li class="img"><img src="__PUBLIC__/images/libg.jpg"></li>
+ 
+  <LI><A href="__APP__/Booking" >活动报名</A> </LI>
+ <li class="img"><img src="__PUBLIC__/images/libg.jpg"></li>
+  <LI> <if condition="($_SESSION['uid'] eq '') or($_SESSION['uid'] eq null) "> <A href="__APP__/Public/login" ><else /><eq name="_SESSION['type']" value="1"><a href="__APP__/Member/index.shtml"><else /><a href="__APP__/Company/management.shtml"></eq></if>我的得利</A> </LI>
+ <li class="img"><img src="__PUBLIC__/images/libg.jpg"></li>
+</UL></DIV>
+
+</div>

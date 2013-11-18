@@ -1,0 +1,120 @@
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<load href="__TMPL__ThemeFiles/Js/jquery.js" />
+<load href="__TMPL__ThemeFiles/Js/jquery.json.js" />
+<load href="__TMPL__ThemeFiles/Js/tabs.js" />
+<script type="text/javascript">
+	function sendDemo()
+	{
+		var mail_address = $("#mail_address").val();
+		var smtp_server = $(".SMTP_SERVER").val();
+		var smtp_account = $(".SMTP_ACCOUNT").val();
+		var smtp_password = $(".SMTP_PASSWORD").val();
+		var smtp_port = $(".SMTP_PORT").val();
+		var smtp_auth = $(".SMTP_AUTH").val();
+		var is_ssl = $(".IS_SSL:checked").val();
+		
+		var form_param = "mail_address="+mail_address+"&smtp_server="+smtp_server+"&smtp_account="+smtp_account+"&smtp_password="+smtp_password+"&smtp_port="+smtp_port+"&smtp_auth="+smtp_auth+"&is_ssl="+is_ssl;
+
+		$.ajax({
+		  url: APP+"?"+VAR_MODULE+"=Email&"+VAR_ACTION+"=sendDemo&"+form_param,
+		  cache: false,
+		  success:function(data)
+		  {
+			alert(data);
+		  }
+		}); 
+	}
+	
+</script>
+<style type="text/css">
+	.conf_btns{ padding:0px; margin:0px;}
+	.conf_btns li{ font-size:12px; display:inline-block; width:80px; height:23px; line-height:23px; float:left;
+		background:#f1f1f1; margin:1px; text-align:center; padding:2px 5px; cursor:pointer;
+	}
+	.conf_btns li.current{ background:#56B2DD; color:#fff;}
+	.conf_tabs table.conf_table{ margin:10px auto; }
+</style>
+<div id="main" class="main" >
+<div class="content">
+<div class="title">{$Think.lang.SYSCONF}</div>
+<div id="result" class="result none"></div>
+<form method='post' id="form" name="form" action="{:u('SysConf/update')}"  enctype="multipart/form-data">
+
+<ul class="conf_btns">
+<foreach name="conf_list" item="vo" >
+	<li class="{$key}">{$key}</li>
+</foreach>
+</ul>
+<br clear="all" />
+<div class="conf_tabs">
+<foreach name="conf_list" item="vo" >
+
+<table cellpadding=0 cellspacing=0 class="conf_table dataEdit" >
+	<foreach name="vo" item="vo_item" >
+	<tr>
+		<td class="tRight" width="250">{:sysConfL("TITLE_".$vo_item['name'])}：</td>
+		<td class="tLeft" >
+			<if condition="$vo_item['list_type'] eq 0"><!-- 手动输入 -->
+				<input type="text" name="{$vo_item.name}" class="{$vo_item.name}" value="{$vo_item.val}" <if condition="$vo_item['name'] eq 'SYS_ADMIN'">onblur="checkAdm(this);"</if> <if condition="$vo_item['name'] eq 'ADMIN_FILE_NAME'">onblur="checkFile(this);"</if> />
+			</if>
+			<if condition="$vo_item['list_type'] eq 1">
+				<foreach name="vo_item['val_arr']" item="val_item" ><!-- 单选 -->
+				<label>{:sysConfL("TITLE_".$vo_item['name']."_".$val_item)}：<input type="radio" name="{$vo_item.name}" class="{$vo_item.name}" value="{$val_item}" <if condition="$vo_item['name'] eq 'IS_SSL'">onclick="checkSSL(this);"</if> <if condition="$val_item eq $vo_item['val']">checked="checked" </if> /></label>
+				</foreach>
+			</if>
+			<if condition="$vo_item['list_type'] eq 2">
+				<if condition="$vo_item['name'] eq 'DEFAULT_USER_GROUP'">
+					<select name="{$vo_item.name}" class="{$vo_item.name}">
+						<foreach name="vo_item['val_arr']" item="val_item" ><!-- 下拉 -->
+						<option value="{$val_item}" <if condition="$val_item eq $vo_item['val']">selected="selected"</if>>{:userGroupName($val_item)}</option>
+						</foreach>
+					</select>
+				<else />
+					<select name="{$vo_item.name}" class="{$vo_item.name}">
+						<foreach name="vo_item['val_arr']" item="val_item" ><!-- 下拉 -->
+						<option value="{$val_item}" <if condition="$val_item eq $vo_item['val']">selected="selected"</if>>{:sysConfL("TITLE_".$vo_item['name']."_".$val_item)}</option>
+						</foreach>
+					</select>
+				</if>
+			</if>
+			<if condition="$vo_item['list_type'] eq 3"><!-- 文本域 -->
+				<textarea rows="3" cols="30" name="{$vo_item.name}" class="{$vo_item.name}">{:stripslashes($vo_item['val'])}</textarea>
+			</if>
+			<if condition="$vo_item['list_type'] eq 5"><!-- 编辑器 -->
+				<eyoo:editor  name="{$vo_item.name}" type="KindEditor"  style="width:80%;height:250px;visibility:hidden;" dataSource="{$vo_item['val']}" />
+			</if>
+			<if condition="$vo_item['list_type'] eq 4"><!-- 图片域 -->
+				<input type="file"  name="{$vo_item.name}" class="{$vo_item.name}" /> 
+				<if condition="$vo_item['val'] neq ''">
+					<a href="__ROOT__{$vo_item.val}" target="_blank" >{:sysConfL("VIEW")}</a>
+				</if>
+			</if>
+		</td>
+	</tr>
+	</foreach>
+	<if condition="$vo_item['group_id'] eq 7">
+	<tr>
+	<td class="tRight" >发送测试邮件：</td>
+	<td class="tLeft" >
+		邮箱地址：<input type="text" name="mail_address" id="mail_address" class="bLeft" /> <input type="button" value="发送测试邮件" onclick="sendDemo();" />
+	</td>
+	</tr> 
+	</if>
+</table>
+
+</foreach>
+</div>
+<br clear="all" />
+<table cellpadding=3 cellspacing=3 width=100%>
+<tr>
+	<td width=250>&nbsp;</td>
+	<td class="center"><div style="width:85%;margin:5px">
+	<input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> &nbsp; <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" > 
+	</div></td>
+</tr>
+
+</table>
+</form>
+</div>
+</div>

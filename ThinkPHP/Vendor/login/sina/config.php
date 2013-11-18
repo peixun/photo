@@ -1,0 +1,1 @@
+<?php//$key = model('Xdata')->lget('platform');define('WB_AKEY', '1225176796');define('WB_SKEY', 'b9b121e303e1a674610eb2862c03f87e');

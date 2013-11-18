@@ -1,0 +1,72 @@
+<div class="al_rt">
+		<div class="rt_log">
+			<a class="rl1" href="__APP__/Public/login">会员登录</a><a class="rl2" href="__APP__/Public/reg">注册</a><a class="rl3" href="__APP__/Booking/company/id/{$comid}">预约</a>
+		</div>
+		<div class="rt_c">
+			<h5>基本信息</h5>
+			<div class="zx_jbmsg">
+				<p><em>{$coms.main_price|getPriceT}</em></p>
+				<p>{$coms.good_style|utf_substr=10}</p>
+				<p><code>19201</code> 位</p>
+			</div>
+		</div>
+		<div class="rt_c">
+			<h5>联系方式</h5>
+			<div class="lx_one">
+				<div><img src="__PUBLIC__/images/lx_top.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="lxphone"> {$coms.tel}</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_line.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="qq2">
+						<div class="qq2_c">
+                        <volist name="qqs" id="qq">
+						<p style="line-height:24px; height:24px;">客服{$i}：<a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$qq.qq}&amp;Site=得利网&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=2:{$qq.qq}:42" height="20" border="0" alt="{$qq.qq}" align="middle" /></a>
+</p>
+                        </volist>
+						</div>
+					<div><img src="__PUBLIC__/images/qq2bot.jpg" /></div>
+					</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_line.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="lxdadd">{$coms.address}</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_bot.jpg" /></div>
+                <div class="gd_tip">
+				<eq name="Addressdiv" value="1"><volist name="comaddress" id="vo"><div class="gd_mo"><a href="__APP__/BusinessChannel/contact/id/{$comid}#{$vo.name}">{$vo.name}</a></div></volist></eq>
+                </div>
+			</div>
+		</div>
+		<div class="rt_c">
+			<h5>热门预约的工地</h5>
+			<div class="jgd_c">
+            	<div class="jgdc_2" id="wb_conts" style="height:215px;">
+                <ul class="wb_list" >
+                    <volist name="resite" id="resite">
+                    	<li  class="bm_content">
+                        	<span style="width:100px; float:right;">{$resite.user_name}</span><span style=""><em><a href="__APP__/BusinessChannel/constructionlist/id/{$comid}#{$resite.name_1}">{$resite.name_1}</a></em></span>
+                        </li>
+                           </volist>
+                    </ul>
+                
+				</div>
+                <div class="jgdp"><a href="__APP__/BusinessChannel/constructionlist/id/{$comid}.shtml"><img src="__PUBLIC__/images/free_cg.jpg"></a></div>
+			</div>
+          
+            	
+		</div>
+		<div class="rt_c">
+			<h5><a href="__APP__/BusinessChannel/certificatelist/id/{$comid}.shtml">[ 查看更多证书 ]</a>荣誉证书</h5>
+			<div class="qy_c">
+				<volist name="certi" id="certi">
+            	<div class="qy_mod" style="height:112px;">
+					<a href="__APP__/BusinessChannel/certificateshow/id/{$certi.uid}_{$certi.id}.shtml"><img src="__PUBLIC__/upload/certificate/small/{$certi.image}" width="84" height="74"></a>
+					<p><a href="__APP__/BusinessChannel/certificateshow/id/{$certi.uid}_{$certi.id}.shtml">{$certi.name}</a></p>
+				</div>
+				</volist>
+			</div>
+		</div>
+	</div>
+<script src="__PUBLIC__/js/slider.js"></script> 

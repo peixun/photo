@@ -1,0 +1,55 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+{// 加载头部公共文件 }
+<include file="Public:header" />
+<!-- 菜单区域  -->
+
+<!-- 主页面开始 -->
+<div id="main" class="main" >
+
+<script language="JavaScript">
+
+</script>
+
+<body bgcolor="#CCCCCC" alink="#000000">
+
+{$Think.session.user_name}的问题 {$inlist.content}
+<br />
+悬赏 {$inlist.score}
+
+<br /><br /><br />
+<eq name="inlist.status" value='0' >
+<B>网友回答</B>
+<!--循环输出查询结果数据集-->
+<br /><br />
+<TABLE>
+<TR>
+    <TD>内容|</TD>
+    <TD>时间|</TD>
+    <TD>操作|</TD>
+
+</TR>
+
+<volist name="anlist" id="vo">
+<TR>
+    <TD>{$vo.content}</TD>
+    <TD>{$vo.create_time|ToDate='Y-m-d H:i:s'}</TD>
+    <TD>[<a href="__APP__/Ask/close/askid/{$inlist.id}/id/{$vo.id}" title="">设置为最佳答案</a>]</TD>
+</TR>
+</volist>
+<TR>
+<TD>{$page}</TD>
+<TR>
+</TABLE>
+<else />
+	最佳答案
+    <ul>
+    <li>{$jialist.content}</li>
+    <li>{$jialist.create_time|ToDate='Y-m-d H:i:s'}</li>
+    <li></li>
+    </ul>
+</eq>
+
+
+
+</body>

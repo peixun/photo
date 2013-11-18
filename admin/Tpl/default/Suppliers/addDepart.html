@@ -1,0 +1,93 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<load href="__TMPL__ThemeFiles/Js/jquery.js" />
+<load href="__TMPL__ThemeFiles/Js/jquery.json.js" />
+<style type="text/css">
+	.cursorp{ cursor:pointer;}
+</style>
+<script src="http://ditu.google.cn/maps?file=api&v=2&key={:eyooC('GOOGLE_MAP_API_KEY')}&sensor=true"
+        type="text/javascript">
+</script>
+<script type="text/javascript">
+var lang_ids = '{$lang_ids}';
+var lang_names = '{$lang_names}';
+var DIY_URL = '{%DIY_URL}';
+</script>
+<div id="main" class="main" >
+<div class="content">
+<div class="title">{$Think.lang.ADD_DATA} [ <a href="{:u($module_name.'/departList',array('supplier_id'=>$supplier_id))}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+<form method='post' id="form" name="form" action="{:u('Suppliers/insertSupplierDepart')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+<tr>
+	<td class="tRight" width="180">名称：</td>
+	<td class="tLeft" >
+		<input type="text" name="depart_name" class="bLeft" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight">密码：</td>
+	<td class="tLeft" >
+		<input type="password" name="pwd" class="bLeft" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight">地址：</td>
+	<td class="tLeft" >
+		<textarea name="address" class="bLeft" style="width:80%; height:90px;"></textarea>
+	</td>
+</tr>
+<tr>
+	<td class="tRight">交通路线：</td>
+	<td class="tLeft" >
+		<textarea name="bus" class="bLeft" style="width:80%; height:90px;"></textarea>
+	</td>
+</tr>
+<tr>
+	<td class="tRight">供应商API用的地址：</td>
+	<td class="tLeft" >
+		<input type="text" name="api_address" class="bLeft" id="api_address" /> <input type="button" value="开始定位" onclick="loadGeoInfo();" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight">供应商API用的地址经纬度：</td>
+	<td class="tLeft" >
+		经度：<input type="text" name="xpoint" id="xpoint" class="bLeft" />
+		纬度：<input type="text" name="ypoint" id="ypoint" class="bLeft" />
+		<input type="hidden" name="codebar" value="BCGcode39" />
+		<input type="hidden" name="resolution" value="1" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight">地图链接：</td>
+	<td class="tLeft" >
+		<input type="text" name="map" class="bLeft" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight">电话：</td>
+	<td class="tLeft" >
+		<input type="text" name="tel" class="bLeft" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight">营业时间：</td>
+	<td class="tLeft" >
+		<input type="text" name="operating" class="bLeft" />
+		<input type="hidden" name="supplier_id" value="{$supplier_id}" />
+	</td>
+</tr>
+
+<tr>
+	<td></td>
+	<td class="center"><div style="width:85%;margin:5px">
+
+	<input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" > 
+	</div></td>
+</tr>
+
+</table>
+</form>
+</div>
+</div>

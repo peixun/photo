@@ -1,0 +1,33 @@
+<tagLib name="eyoo" />
+<include file="../Public/header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">查看文章 [ <A HREF="__APP__">返回列表</A> ]</div>
+<div id="result" class="result none"></div>
+<TABLE cellpadding=3 cellspacing=3 width="100%"> 
+<TR>  
+	<TD ><H2>{$vo.title} <span style="color:gray;font-weight:normal">[ {$vo.userId} {$vo.create_time|toDate='Y-m-d H:i:s'}]</span></H2> </TD>
+</TR>
+<TR>  
+	<TD>
+     <div style="border:1px dotted silver;padding:5px;margin:5px">{$vo.description}</div> 
+     </TD>
+</TR>
+
+<TR>
+	<TD >
+	<div style="border:1px dotted silver;padding:5px;margin:5px">{$vo.content}</div> 
+	
+	
+	<present name="comments">
+	<div id="comments">
+	<volist name="comments" id="comment" ></volist>
+	</div>
+	</present>
+	<div id="comment"></div></TD>
+</TR> 
+</TABLE>
+
+
+</div>
+</div>

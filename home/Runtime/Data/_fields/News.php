@@ -1,0 +1,27 @@
+<?php
+return array (
+  0 => 'id',
+  1 => 'name_1',
+  2 => 'content_1',
+  3 => 'cate_id',
+  4 => 'create_time',
+  5 => 'update_time',
+  6 => 'ref_link',
+  7 => 'author',
+  8 => 'click_count',
+  9 => 'sort',
+  10 => 'type',
+  11 => 'preview',
+  12 => 'image',
+  13 => 'seokeyword_1',
+  14 => 'seocontent_1',
+  15 => 'status',
+  16 => 'is_top',
+  17 => 'is_recommend',
+  18 => 'brief_1',
+  19 => 'u_name',
+  20 => 'uid',
+  '_autoinc' => true,
+  '_pk' => 'id',
+);
+?>

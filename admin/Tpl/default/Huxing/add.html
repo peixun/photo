@@ -1,0 +1,101 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<div id="main" class="main" >
+<load href="__TMPL__ThemeFiles/Js/jquery.js" />
+<script type="text/javascript" src="__TMPL__ThemeFiles/Js/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__ThemeFiles/Js/calendar/calendar.css' />
+<script>
+function addFj(){ 
+	  var oTb = document.getElementById("tb1");
+	
+	  var oTr = oTb.insertRow(-1);
+	 
+	  var num = parseInt(document.form1.fjCnt.value)+1; 
+	  var no = parseInt(document.form1.fjCnt.value);
+	  document.form1.fjCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>图片：</span><input id='file' name='images[]' type=file  size='70' /> <input type=button onclick='return delFj(this)' value='删除'><br /><span>说明：</span><input maxLength=50  type='text' name='imgname[]' size=70 name=photo_narrate    /> <br /><div id=tip class=red></div><div id=preview></div>";
+	  return false;
+	}
+	function delFj(obj,No){
+		var num = parseInt(document.form1.fjCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.fjCnt.value=num-1;
+		}
+		return false;
+	}
+
+</script>
+
+<div class="content">
+<div class="title">{$Think.lang.ADD_DATA} [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+<form method='post' id="form1" name="form1" action="{:u('Huxing/insert')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+<TR> 
+	<TD class="tRight" width="10%">所属小区aa：</TD>
+	<TD class="tLeft"> <select  name="cate_id" id="cate_id" class='bLeftRequire' style="width:208px;" >
+                  <option value="-1">选择小区楼盘</option>
+                  <volist name="cate" id="cate">
+                   <option value="{$cate.id}">|--&nbsp;&nbsp;{$cate.name_1}
+                    </option>
+                  </volist> 
+           </select>
+                </TD> 
+</TR> 
+<TR> 
+	<TD class="tRight" width="10%">户型名称：</TD>
+	<TD class="tLeft" ><input type="text" name="name_1"  class='bLeftRequire' /></TD>
+</TR>
+<tr>
+	<td class="tRight" width="80">{$Think.lang.SEO_KEYWORD}：</td>
+	<td class="tLeft" >
+		<eyoo:textarea name="seokeyword" class="bLeft" cols="50" rows="2" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight" width="80">{$Think.lang.SEO_CONTENT}：</td>
+	<td class="tLeft" >
+		<eyoo:textarea name="seocontent" class="bLeft" cols="50" rows="2" />
+	</td>
+</tr>
+
+<tr>
+	<td class="tRight" width="80">户型介绍：</td>
+
+	<td class="tLeft" >
+		<eyoo:editor  name="content" type="KindEditor" id="content" style="width:650px;height:280px;visibility:hidden;" />
+	</td>
+</tr>
+<tr>
+    <td>户型图片：</td>
+    <td colSpan=2>
+	<table id="tb1" border=0 cellspacing=0 cellpadding=3 >
+	
+	<tr>
+	<td>
+	<span>图片：</span><input id="Filedata"  name="images[]" size=70 type=file value="上 传"  />   <input type=button onclick='return delFj(this)' value='删除'><br />
+	说明：<input maxLength=50  type="text" name='imgname[]' size=70    /> 
+	<div id="tip" class=red></div>
+	<div id="preview"></div>
+	</td>
+	</tr> 
+	
+	</table>
+    <a href="#" onclick="return addFj()">添加一张图片</a><input type="hidden" name="fjCnt" value="" />
+	</td>
+  </tr>
+
+<tr>
+	<td></td>
+	<td class="center"><div style="width:85%;margin:5px">
+	<input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" > 
+	</div></td>
+</tr>
+</table>
+</form>
+
+</div>
+</div>

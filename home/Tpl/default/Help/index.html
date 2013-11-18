@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/info.css" rel="stylesheet" type="text/css" />
+<title>账户信息</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<script>
+function show(sid)
+      {
+        var subitem=document.getElementById("info_main_"+sid);
+      //subitem.style.display=subitem.style.display=='none'?'':'none';
+      if(subitem.style.display=='none'){
+        	subitem.style.display='';
+			subitem1.style.display='none';
+
+       }
+       else{
+       subitem.style.display='none';
+	   subitem1.style.display='';
+
+      }
+     }
+</script>
+</head>
+<body>
+ <include file="Public:top" />
+<div class="container">
+	<div class="info_lf">
+		<h2><img src="__PUBLIC__/images/about_us.jpg" /></h2>
+		<div class="info_c">
+         	<volist name="vo_page" id="vo">
+			<p <eq name="vo.id" value="$page.id">class="clk"</eq>><a href="__APP__/Help/{$vo.id}">{$vo.name_1}</a></p>		
+			</volist>
+		</div>
+	</div>
+	<div class="info_rt">
+		<div class="info_rtit">
+			<div class="inrt_n">{$page.name_1}</div>
+			<div class="inrt_r"></div>
+		</div>
+		  
+		<div class="info_main" style="min-height:300px;">
+			{$page.content_1}
+            </div>
+		</div>
+	</div>
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+</body>
+</html>

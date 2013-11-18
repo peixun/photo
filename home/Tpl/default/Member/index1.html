@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>用户中心-精采网</title>
+<link href="__PUBLIC__/css/style.css" type="text/css" rel="stylesheet" />
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.main,.menu_topk,.tishi_content,.tishi_menufoot,.title_c h1,.footer,.left_menu,.check_db a,.title_c2 h1,.zhek_list li .zhe_k,img'); 
+</script> 
+<![endif]-->
+<script src="__PUBLIC__/js/jquery-1.7.js"></script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $(".m01").mouseenter(			
+                function(){
+					$("#m01").show();
+            });
+            $(".m01").mouseleave(
+                function(){
+                 $("#m01").hide();
+            });
+			
+			 $(".m02").mouseenter(			
+                function(){
+					$("#m02").show();
+            });
+            $(".m02").mouseleave(
+                function(){
+                 $("#m02").hide();
+            });
+			
+			 $(".m03").mouseenter(			
+                function(){
+					$("#m03").show();
+            });
+            $(".m03").mouseleave(
+                function(){
+                 $("#m03").hide();
+            });
+			
+			 $(".m04").mouseenter(			
+                function(){
+					$("#m04").show();
+            });
+            $(".m04").mouseleave(
+                function(){
+                 $("#m04").hide();
+            });
+			
+			 $(".m05").mouseenter(			
+                function(){
+					$("#m05").show();
+            });
+            $(".m05").mouseleave(
+                function(){
+                 $("#m05").hide();
+            });
+			
+			 $(".m06").mouseenter(			
+                function(){
+					$("#m06").show();
+            });
+            $(".m06").mouseleave(
+                function(){
+                 $("#m06").hide();
+            });
+			
+			 $(".m07").mouseenter(			
+                function(){
+					$("#m07").show();
+            });
+            $(".m07").mouseleave(
+                function(){
+                 $("#m07").hide();
+            });
+			
+			 $(".m08").mouseenter(			
+                function(){
+					$("#m08").show();
+            });
+            $(".m08").mouseleave(
+                function(){
+                 $("#m08").hide();
+            });		
+			$(".compare_table tr").bind("mouseover mouseout",function(e){
+																	  $(this).toggleClass("highlight");
+																	  });			   
+	});
+</script>
+<style>
+.menu li .hover_o2{ display:block;}
+</style>
+</head>
+<body>
+<DIV style="width:200px; float:left;">
+	<ul>
+	<li><a href="__APP__/Member/index">个人信息</a></li>
+	<li><a href="__APP__/Member/news">预报名活动</a></li>
+
+	<li><a href="__APP__/Member/myConstruction">已预约工地</a></li>
+	<li><a href="__APP__/Member/myAttention">我的收藏</a></li>
+	
+	</ul>
+</DIV>
+<div style="float:left;"> <a href="__APP__/Company/edit">修改基础信息</a>
+	<p>昵称：{$user.user_name}</p>
+<p>手机号码：{$user.mobile}</p>
+<p>email：{$user.email}</p>
+</div>
+<div style="clear:both"></div>
+
+</body>
+</html>

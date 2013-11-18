@@ -1,0 +1,190 @@
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<load href="__TMPL__ThemeFiles/Js/jquery.js" />
+<load href="__TMPL__ThemeFiles/Js/jquery.json.js" />
+<load href="__TMPL__ThemeFiles/Js/tabs.js" />
+<style type="text/css">
+	.conf_btns{ padding:0px; margin:0px;}
+	.conf_btns li{ font-size:12px; display:inline-block; width:80px; height:23px; line-height:23px; float:left;
+		background:#f7f7f7; margin:1px; text-align:center; padding:2px 5px; cursor:pointer;
+	}
+	.conf_btns li.current{ background:#56B2DD; color:#fff;}
+	.conf_tabs table.conf_table{ margin:10px; }
+</style>
+<div id="main" class="main" >
+
+<div class="title">会员明细帐</div>
+
+
+<ul class="conf_btns">
+	<li class="">会员资料</li>
+	<li class="">培训师资料</li>
+	<li class="">机构资料</li>
+
+	<li class="">积分变化历史</li>
+	
+</ul>
+
+<div class="conf_tabs">
+
+<div class="tabItem">
+	<table id="user" class="list" cellpadding=0 cellspacing=0>
+		<tr>
+			<td class="tRight" width="120">{$Think.lang.USER_NAME}：</td>
+			<td class="tLeft" >{$vo.user_name}</td>
+		</tr>	
+		<tr>
+			<td class="tRight" >{$Think.lang.USER_GROUP}：</td>
+			<td class="tLeft" >{$vo.group_name}</td>
+		</tr> 
+		<tr>
+			<td class="tRight" >{$Think.lang.EMAIL}：</td>
+			<td class="tLeft" >{$vo.email}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.QQ}：</td>
+			<td class="tLeft" >{$vo.qq}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.MSN}：</td>
+			<td class="tLeft" >{$vo.msn}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ALIM}：</td>
+			<td class="tLeft" >{$vo.alim}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.MOBILE_PHONE}：</td>
+			<td class="tLeft" >{$vo.mobile_phone}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ZIP}：</td>
+			<td class="tLeft" >{$vo.zip}
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ADDRESS}：</td>
+			<td class="tLeft" >{$vo.address}</td>
+		</tr>
+		<tr>
+			<th colspan=2>{%ACCOUNT_INFO}	</th>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.USER_SCORE}：</td>
+			<td class="tLeft" >{$vo.score}</td>
+		</tr>
+		
+		<tr>
+			<td class="tRight" >推荐人数：</td>
+			<td class="tLeft" >{$vo.referrals_count}</td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="tabItem">
+	<table id="user" class="list" cellpadding=0 cellspacing=0>
+		<tr>
+			<td class="tRight" width="120">{$Think.lang.USER_NAME}：</td>
+			<td class="tLeft" >{$vo.user_name}</td>
+		</tr>	
+		<tr>
+			<td class="tRight" >{$Think.lang.USER_GROUP}：</td>
+			<td class="tLeft" >{$vo.group_name}</td>
+		</tr> 
+		<tr>
+			<td class="tRight" >{$Think.lang.EMAIL}：</td>
+			<td class="tLeft" >{$vo.email}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.QQ}：</td>
+			<td class="tLeft" >{$vo.qq}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.MSN}：</td>
+			<td class="tLeft" >{$vo.msn}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ALIM}：</td>
+			<td class="tLeft" >{$vo.alim}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.MOBILE_PHONE}：</td>
+			<td class="tLeft" >{$vo.mobile_phone}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ZIP}：</td>
+			<td class="tLeft" >{$vo.zip}
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ADDRESS}：</td>
+			<td class="tLeft" >{$vo.address}</td>
+		</tr>
+	
+	</table>
+</div>
+
+
+<div class="tabItem">
+	<table id="user" class="list" cellpadding=0 cellspacing=0>
+		<tr>
+			<td class="tRight" width="120">{$Think.lang.USER_NAME}：</td>
+			<td class="tLeft" >{$vo.user_name}</td>
+		</tr>	
+		<tr>
+			<td class="tRight" >{$Think.lang.USER_GROUP}：</td>
+			<td class="tLeft" >{$vo.group_name}</td>
+		</tr> 
+		<tr>
+			<td class="tRight" >{$Think.lang.EMAIL}：</td>
+			<td class="tLeft" >{$vo.email}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.QQ}：</td>
+			<td class="tLeft" >{$vo.qq}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.MSN}：</td>
+			<td class="tLeft" >{$vo.msn}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ALIM}：</td>
+			<td class="tLeft" >{$vo.alim}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.MOBILE_PHONE}：</td>
+			<td class="tLeft" >{$vo.mobile_phone}</td>
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ZIP}：</td>
+			<td class="tLeft" >{$vo.zip}
+		</tr>
+		<tr>
+			<td class="tRight" >{$Think.lang.ADDRESS}：</td>
+			<td class="tLeft" >{$vo.address}</td>
+		</tr>
+	
+	</table>
+</div>
+
+		
+<div class="tabItem">
+		<table id="log_score_list" class="list" cellpadding=0 cellspacing=0>
+			<tr>
+				<th width="200">事件</th>
+				<th width="140">会员积分</th>
+				<th width="60">类型</th>
+				<th width="100">发生时间</th>
+			</tr>
+			<volist name="log_score_list" id="log_item" mod="2">
+				<tr <eq name="mod" value="1">class="alt"</eq>>
+					<td style="text-align:left;">{$log_item.memo_1}</td>
+					<td><if condition="$log_item['log_type'] eq 'score'">{$log_item.value}</if></td>
+					<td>{:L("OP_TYPE_".$log_item['op_type'])}</td>
+					<td>{$log_item.create_time|toDate}</td>
+				</tr>
+			</volist>
+		</table>
+</div>		
+		
+					
+</div>

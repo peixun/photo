@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/anli.css" rel="stylesheet" type="text/css" />
+<title>设计师详细介绍</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]-->
+<script> 
+function caseshow(sid)
+      {
+        var subitem=document.getElementById("caselist"+sid);
+		var subitem1=document.getElementById("caselist1"+sid);
+
+      //subitem.style.display=subitem.style.display=='none'?'':'none';
+      if(subitem.style.display=='none'){
+        	subitem.style.display='';
+			subitem1.style.display='none';
+
+       }
+       else{
+       subitem.style.display='none';
+	   subitem1.style.display='';
+
+      }
+     }
+	 function say(){
+		alert("所有的案例都显示了");	 
+	}
+</script>	
+<script>
+function add_design(com_id,designer_id){
+	$.post('__APP__/Tool/addDesignBook',{com_id:com_id,designer_id:designer_id,'rand':Math.random()},function(aa){
+		if(aa=='nologin'){
+			alert("未登陆,预约设计师!");
+			window.location.href = '__APP__/Public/login';
+		}else if(aa=='ok'){
+			alert("预约成功!");
+		}else if(aa=='have'){
+			alert("已经预约设计师了!");
+		}else{
+			alert("预约失败!");
+		}
+	});
+}
+</script>
+</head>
+<body>
+<include file="Public:top" />
+<div class="container">
+	<div class="anli_gg"><eq name="$coms.logo" value=""><img src="__PUBLIC__/upload/logo/thum/{$coms.logo}" /><else /><img src="__PUBLIC__/images/al_logo.jpg" /></eq></div>
+	<include file="Public:meum" />
+	<div class="al_lf">
+		<h2>设计师</h2>
+		<div class="al_lfcont">
+			<div><img src="__PUBLIC__/images/sjsjs.jpg"></div>
+			<div class="al_lf_c">
+				<div class="sj_dt_c">
+					<div class="sjdtc_lf">
+						<div class="sj_lfpic"><eq name="designer.image" value=""><img src="__PUBLIC__/images/header2.jpg" /><else /><img src="__PUBLIC__/upload/designer/small/{$designer.image}" /></eq></div>
+						<div class="sj_txtpic">
+							<h5>设计师： {$designer.name_1}</h5>
+							<p>设计费：{$designer.cost}</p>
+							<p>擅长风格：{$designer.good_style|utf_substr=20}</p>
+							<p>从业年限：{$designer.work_years}</p>
+						</div>
+                        <div class="clear"></div>
+						<p style="margin-top:5px;"><input  type="button" onclick="add_design({$comid},{$designer.id});" class="log_btn11" value="预约设计师" /></p>
+					</div>
+					<div class="sjdtc_rt"><em>设计理念：</em>{$designer.content_1|strip_tags|utf_substr=300}</div>
+				</div>
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg"></div>
+			<div><img src="__PUBLIC__/images/sjsnewtit.jpg"></div>
+			<div class="al_lf_c">
+				<div class="sjs_new_m">
+					<div class="sjs_new_c">
+						<h6>{$newcase.name_1}</h6>
+						<p>{$newcase.content_1}</p>
+					</div>
+					<div class="best_c">
+						<div class="best_big"><img src="__PUBLIC__/upload/case/l_{$piclist['0']['images']}" id="casepic" /></div>
+						<div class="best_sm">
+							<volist name="piclist" id="piclist">
+                            <div class="smdiv" ><a href="javascript:void(0);" id="xwFocus1_{$i}"  class="<eq name="i" value="1">clk</eq>"  onmouseover="javascript:cssShow('isXwFocus1_',{$i},4,'xwFocus1_','clk|mid2_1uli2');"><img src="__PUBLIC__/upload/case/s_{$piclist.images}" class="casesshow" title="__PUBLIC__/upload/case/l_{$piclist.images}" class="" /></a></div>
+							</volist>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg"></div>
+			<div><img src="__PUBLIC__/images/sjs_his.jpg"></div>
+			<div class="al_lf_c">
+				<div class="xs_mod"  id="caselist1">
+                <volist name="caselist" id="caselist">
+					<div class="xs_mod_m">
+						<a href="__APP__/BusinessChannel/caseshow/id/{$caselist.uid}_{$caselist.id}.shtml"><img src="__PUBLIC__/upload/case/s_{$caselist.id|getCasePic}" /></a>
+						<p><a href="__APP__/BusinessChannel/caseshow/id/{$caselist.uid}_{$caselist.id}.shtml">{$caselist.name_1}</a></p>
+					</div>
+					</volist>
+                    
+					<div class="sub_more"><eq name="caseshow" value="1"><a href="javascript:void(0);" onclick="say()">显示全部案例</a><else /><a href="javascript:void(0);" onclick="caseshow(1)">显示全部案例</a></eq></div>
+				</div> 
+                <div class="xs_mod"  id="caselist11" style="display:none">
+                <volist name="caselists" id="caselist">
+					<div class="xs_mod_m">
+						<a href="__APP__/BusinessChannel/caseshow/id/{$caselist.uid}_{$caselist.id}.shtml"><img src="__PUBLIC__/upload/case/s_{$caselist.id|getCasePic}" /></a>
+						<p><a href="__APP__/BusinessChannel/caseshow/id/{$caselist.uid}_{$caselist.id}.shtml">{$caselist.name_1}</a></p>
+					</div>
+					</volist>
+                    
+					<div class="sub_more"><a href="javascript:void(0);" onclick="caseshow(1)">收回全部案例</a></div>
+				</div>
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg"></div>
+		</div>
+	</div>
+	<include file="Public:com_right" />	
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+           
+			
+			$(".casesshow").mouseenter(
+                function(){
+                   var a= $(this).attr("title");
+				   $("#casepic").attr("src",a);
+            });
+	
+})
+</script>
+<script>
+function cssShow(itemName,showId,num,bgItemName,clsName)       //(itemName+num)系列栏目名称，showID需要显示的编号
+{
+	var clsNameArr=new Array(2)
+	if(clsName.indexOf("|")<=0){
+		clsNameArr[0]=clsName
+		clsNameArr[1]=""
+	}else{
+		clsNameArr[0]=clsName.split("|")[0]
+		clsNameArr[1]=clsName.split("|")[1]
+	}
+	for(i=1;i<=num;i++)
+	{ 
+//	alert(i);
+		if(document.getElementById(bgItemName+i)!=null)
+			document.getElementById(bgItemName+i).className=clsNameArr[1]
+		
+		if(i==showId)
+		{
+			
+			if(document.getElementById(bgItemName+i)!=null)
+				document.getElementById(bgItemName+i).className=clsNameArr[0]
+		}
+	}
+}
+
+</script>
+</body>
+</html>

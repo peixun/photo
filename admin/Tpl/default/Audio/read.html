@@ -1,0 +1,37 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">查看评论 [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+  
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/kindeditor/kindeditor.js"></script>
+    
+ 
+<form method='post' id="form1" name="form1" action="{:u('News/update')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+<tr>
+  <td class="tRight">评论名称：</td>
+  <td class="tLeft" >{$vo.name}&nbsp;</td>
+</tr>
+<tr>
+	<td class="tRight" width="120">评论新闻名：</td>
+	<td class="tLeft" > 
+		<input type="text" readonly="readonly" class="bLeft" name="title" value="{$vo.news_id}"/>
+	</td>
+</tr>
+<tr>
+	<td class="tRight" width="120">评论内容：</td>
+	 
+	</td>
+    <td><textarea readonly="readonly" style="width:50%"> {$vo.comment}</textarea> </td>
+</tr>
+	 
+
+</table>
+</form>
+
+</div>
+</div>

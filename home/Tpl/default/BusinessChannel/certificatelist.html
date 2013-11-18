@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/anli.css" rel="stylesheet" type="text/css" />
+<title>{$title}</title>
+<script src="__PUBLIC__/js/jquery-1.3.2.min.js"></script> 
+  <script type="text/javascript" src="__PUBLIC__/js/hd.js"></script>
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<style>
+.caselist{
+	padding: 20px 32px;
+}
+.qy_certi{
+	float:left;
+	width:344px;
+	text-align:center;
+	margin-left:10px;
+}
+.qy_certi img{
+	border: 1px solid #E0D9D4;
+}
+.qy_certi p{
+	line-height:30px;
+	font-size:14px; 
+	font-weight:600;
+	}
+</style>
+</head>
+<body>
+ <include file="Public:top" />
+<div class="container">
+	<div class="anli_gg"><eq name="$coms.logo" value=""><img src="__PUBLIC__/upload/logo/thum/{$coms.logo}" /><else /><img src="__PUBLIC__/images/al_logo.jpg" /></eq></div>
+	<include file="Public:meum" />
+
+	<div class="al_lf">
+		<h2>荣誉证书</h2>
+		<div class="al_lfcont" style="height:920px;">
+			
+			<div><img src="__PUBLIC__/images/zs_tit.jpg" /></div>
+			<div class="al_lf_c">
+            	
+				<volist name="certificate" id="certi">
+               		
+            	<div class="qy_certi" style="height:199px;">
+					<a href="__APP__/BusinessChannel/certificateshow/id/{$certi.uid}_{$certi.id}.shtml"><img src="__PUBLIC__/upload/certificate/big/{$certi.image}"></a>
+					<p><a href="__APP__/BusinessChannel/certificateshow/id/{$certi.uid}_{$certi.id}.shtml">{$certi.name}</a></p>
+				</div>
+				
+					
+				</volist>
+			
+				
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg" /></div>	
+		<div class="al_pages">
+			<div class="al_plf"></div>
+			<div id="pagavation">{$page}</div>
+		</div>		
+		</div>
+	</div>
+	<div class="al_rt">
+		<div class="rt_log">
+			<a href="__APP__/Public/login" class="rl1">会员登录</a><a href="__APP__/Public/reg" class="rl2">注册</a><a href="__APP__/Booking" class="rl3">预约</a>
+		</div>
+		<div  class="rt_c">
+			<h5>{$coms.company_name}</h5>
+			<div class="lx_one">
+				<div><img src="__PUBLIC__/images/lx_top.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="qq1"> {$coms.tel}</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_line.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="qq2">
+						<div class="qq2_c">
+                        <volist name="qqs" id="qq">
+						<p style="line-height:24px; height:24px;">客服{$i}：<a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$qq.qq}&amp;Site=得利网&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=2:{$qq.qq}:42" height="20" border="0" alt="{$qq.qq}" align="middle" /></a>
+</p>
+                        </volist>
+						</div>
+					<div><img src="__PUBLIC__/images/qq2bot.jpg" /></div>
+					</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_line.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="lxdadd">{$coms.address}</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_bot.jpg" /></div>
+                <div class="gd_tip">
+				<eq name="Addressdiv" value="1"><volist name="comaddress" id="vo"><div class="gd_mo"><a href="__APP__/BusinessChannel/contact/id/{$comid}#{$vo.name}">{$vo.name}</a></div></volist></eq>
+                </div>
+				<div class="sjzx_d"><a href="__APP__/Booking/company/id/{$comid}"><img src="__PUBLIC__/images/freeonline.jpg" /></a></div>
+			</div>
+		</div>
+		
+		<div class="al_rm" style="height:250px;">广告位置1</div>
+		<div class="clear11"></div>
+		<div class="al_rm" style="height:250px;">广告位置2</div>
+	</div>
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+</body>
+</html>

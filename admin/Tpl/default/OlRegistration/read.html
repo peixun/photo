@@ -1,0 +1,39 @@
+<tagLib name="eyoo" />
+<include file="../Public/header" />
+<div id="main" class="main">
+<div class="content">
+<div class="title">需求列表 [ <A HREF="__APP__">返回列表</A> ]</div>
+<div id="result" class="result none"></div>
+<TABLE cellpadding=3 cellspacing=3 width="100%">
+	
+	<TR>
+		<TD>
+		<div style="border: 1px dotted silver; padding: 5px; margin: 5px">申请活动名称
+		- <label>[{$list.course_title}]</label></div>
+		</TD>
+	</TR>
+
+	<TR>
+
+		<TD>
+		<div style="border: 1px dotted silver; padding: 5px; margin: 5px">
+		<table width="900">
+        <tr>
+			<ul>
+				<li>联系人姓名:  {$list.name}</li>
+				<li>  传  真:   {$list.fax}</li>
+				<li>详细地址:   {$list.address}</li>
+				<li>所属公司:   {$list.company}</li>
+				<li>电话:      {$list.tel}</li>
+                <li>邮箱地址:   {$list.email}</li>
+                <li>报名时间:   {$list.create_time|toDate}</li>
+                <li>报名人数:   {$list.people_number}</li>
+                <li>备注:       {$list.company}</li>
+			</ul>
+        </tr>
+		</table
+	></TR>
+</TABLE>
+</div>
+</div>
+

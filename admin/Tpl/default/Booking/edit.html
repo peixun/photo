@@ -1,0 +1,57 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">{$Think.lang.EDIT_DATA} [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+<form method='post' id="form" name="form" action="{:u('Booking/update')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+<tr>
+	<td class="tRight" width="120">预约公司：</td>
+	<td class="tLeft" >
+    <select name="select_uid" class="bLeftRequire">
+		<option value="0" <eq name="vo.select_uid" value="0">selected="selected"</eq>>本站</option>
+		<foreach name="user_list" item="user_list" >
+			<option value="{$user_list.uid}" <eq name="user_list.uid" value="$vo.select_uid">selected="selected"</eq>>|--{$user_list.company_name}</option>
+		</foreach>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td class="tRight" >预约类型：</td>
+	<td class="tLeft" >
+		<input name="type" type="radio" value="1" <eq name="vo.type" value="1"> checked="checked" </eq> />&nbsp;免费量房<input name="type" type="radio" value="2" <eq name="vo.type" value="2"> checked="checked" </eq> />&nbsp;免费预算<input name="type" type="radio" value="3" <eq name="vo.type" value="3"> checked="checked" </eq> />&nbsp;免费设计<input name="type" type="radio" value="4" <eq name="vo.type" value="4"> checked="checked" </eq> />&nbsp;免费咨询
+	</td>
+</tr>
+<tr>
+	<td class="tRight" >您的称呼：</td>
+	<td class="tLeft" >
+		<eyoo:textbox name="user_name" class="bLeftRequire" />
+	</td>
+</tr>
+
+ <tr>
+	<td class="tRight" >手机号码：</td>
+	<td class="tLeft" >
+		<eyoo:textbox name="mobile" class="bLeftRequire" />
+	</td>
+</tr> 
+
+<tr>
+	<td class="tRight" >email地址：</td>
+	<td class="tLeft" >
+		<eyoo:textbox name="email" class="bLeftRequire" />
+	</td>
+</tr> 
+<tr>
+	<td></td>
+	<td class="center"><div style="width:85%;margin:5px">
+	<input type="hidden" name="id" value="{$vo.id}" />
+	<input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" > 
+	</div></td>
+</tr>
+</form>
+</table>
+</div>
+</div>

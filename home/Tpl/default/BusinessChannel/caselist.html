@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/anli.css" rel="stylesheet" type="text/css" />
+<title>案例展示</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+
+</head>
+<body>
+<include file="Public:top" />
+<div class="container">
+	<div class="anli_gg"><eq name="$coms.logo" value=""><img src="__PUBLIC__/upload/logo/thum/{$coms.logo}" /><else /><img src="__PUBLIC__/images/al_logo.jpg" /></eq></div>
+	<include file="Public:meum" />
+	<div class="al_lf" >
+		<h2>案例展示</h2>
+		<div class="al_lfcont" style="height:920px;">
+			
+			<div><img src="__PUBLIC__/images/zs_tit.jpg" /></div>
+			<div class="al_lf_c">
+				<volist name="list" id="sub">
+                <div class="aldetail_mod">
+					<div class="al_detm">
+						<div class="ald_pic"><a href="__APP__/BusinessChannel/caseshow/id/{$sub.uid}_{$sub.id}.shtml"><img src="__PUBLIC__/upload/case/s_{$sub.id|getCasePic}" /></a></div>
+						<div class="ald_txt">
+							<p>社区：<em>{$sub.cate_pid|getHuxing}</em></p>
+							<p>户型：<em>{$sub.cate_id|getHuxing}</em></p>
+							<p>价格：<em>{$sub.budget}</em></p>
+							<p>风格：<em>{$sub.styles}</em></p>
+							<p>设计师：<em>{$sub.desinger_id|getDesinger}</em></p>
+						</div>
+						<div class="zs_dtmsg"><a href="__APP__/BusinessChannel/caseshow/id/{$sub.uid}_{$sub.id}.shtml">{$sub.name_1}</a></div>
+					</div>
+				</div>
+				</volist>
+		
+				
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg" /></div>	
+		<div class="al_pages">
+			<div class="al_plf">共有<em>{$counts}</em>套案例</div>
+			<div id="pagavation">{$page}</div>
+		</div>		
+		</div>
+	</div>
+	<div class="al_rt">
+		<div class="rt_log">
+			<a href="__APP__/Public/login" class="rl1">会员登录</a><a href="__APP__/Public/reg" class="rl2">注册</a><a href="__APP__/Booking" class="rl3">预约</a>
+		</div>
+		<div  class="rt_c">
+			<h5>{$coms.company_name}</h5>
+			<div class="lx_one">
+				<div><img src="__PUBLIC__/images/lx_top.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="qq1"> {$coms.tel}</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_line.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="qq2">
+						<div class="qq2_c">
+                        <volist name="qqs" id="qq">
+						<p style="line-height:24px; height:24px;">客服{$i}：<a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$qq.qq}&amp;Site=得利网&amp;Menu=yes" target="_blank"><img src="http://wpa.qq.com/pa?p=2:{$qq.qq}:42" height="20" border="0" alt="{$qq.qq}" align="middle" /></a>
+</p>
+                        </volist>
+						</div>
+					<div><img src="__PUBLIC__/images/qq2bot.jpg" /></div>
+					</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_line.jpg" /></div>
+				<div class="lx_one_c">
+					<div class="lxdadd">{$coms.address}</div>
+				</div>
+				<div><img src="__PUBLIC__/images/lx_bot.jpg" /></div>
+                <div class="gd_tip">
+				<eq name="Addressdiv" value="1"><volist name="comaddress" id="vo"><div class="gd_mo"><a href="__APP__/BusinessChannel/contact/id/{$comid}#{$vo.name}">{$vo.name}</a></div></volist></eq>
+                </div>
+				<div class="sjzx_d"><a href="__APP__/Booking/company/id/{$comid}"><img src="__PUBLIC__/images/freeonline.jpg" /></a></div>
+			</div>
+		</div>
+		
+		<div class="al_rm" style="height:250px;">广告位置1</div>
+		<div class="clear11"></div>
+		<div class="al_rm" style="height:250px;">广告位置2</div>
+	</div>	
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+</body>
+</html>

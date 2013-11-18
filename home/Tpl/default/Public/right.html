@@ -1,0 +1,127 @@
+<div class="con_rt">
+		<div class="login">
+			<h1>用户中心</h1>
+             <if condition="($_SESSION['uid'] eq '') or($_SESSION['uid'] eq null) "> 
+            <div class="log_cont">
+                <form name="frm1" method="post" action="__APP__/Public/checkLogins">
+				<eq name="_COOKIE['remarkpass']" value="1">
+                <table cellpadding="0" border="0" cellspacing="0" class="tab_01">
+					<tr>
+						<td align="right" width="24%">用户名</td>
+						<td width="76%"><input type="text" name="user_name" class="txt_02" value="{$_COOKIE['user_name']}"  /></td>
+					</tr>
+					<tr>
+						<td align="right" width="24%">密&nbsp;&nbsp;码</td>
+						<td width="76%"><input type="password" class="txt_02" name="user_pwd" value="{$_COOKIE['password']}"  /></td>
+					</tr>
+					<tr>
+						<td align="right" width="24%">&nbsp;</td>
+						<td width="76%"><input type="checkbox" name="remarkpass" value="1" class="clk_check"/>&nbsp;&nbsp;<u class="u_clk">记住登录状态</u>&nbsp;&nbsp; <a href="__APP__/Public/forgetpw">忘记密码</a></td>
+					</tr>
+					<tr>
+						<td align="right" width="24%" class="log">&nbsp;</td>
+						<td width="76%" class="log"><input type="submit" class="log_btn11" value="登 录" /></td>
+					</tr>
+				</table>
+                <else />
+                       <table cellpadding="0" border="0" cellspacing="0" class="tab_01">
+					<tr>
+						<td align="right" width="24%">用户名</td>
+						<td width="76%"><input type="text" name="user_name" class="txt_02" value="请输入手机号码" onclick="if(this.value=='请输入手机号码')this.value='';" onblur="if(this.value=='')this.value='请输入手机号码';" /></td>
+					</tr>
+					<tr>
+						<td align="right" width="24%">密&nbsp;&nbsp;码</td>
+						<td width="76%"><input type="password" class="txt_02" name="user_pwd" /></td>
+					</tr>
+					<tr>
+						<td align="right" width="24%">&nbsp;</td>
+						<td width="76%"><input type="checkbox" name="remarkpass" value="1" class="clk_check"/>&nbsp;&nbsp;<u class="u_clk">记住登录状态</u>&nbsp;&nbsp; <a href="__APP__/Public/forgetpw">忘记密码</a></td>
+					</tr>
+					<tr>
+						<td align="right" width="24%" class="log">&nbsp;</td>
+						<td width="76%" class="log"><input type="submit" class="log_btn11" value="登 录" /></td>
+					</tr>
+				</table>
+                </eq>
+                </form>
+			</div>
+		
+            <p>还没有账号？<a href="__APP__/Public/reg">立即注册</a></p>
+            <else/>
+            <div class="log_cont">
+            <p style=" color:#514034; font-size:14px;"><script language="javaScript"> 
+now = new Date(),hour = now.getHours() 
+if(hour < 6){document.write("凌晨好！")} 
+else if (hour < 9){document.write("早上好！")} 
+else if (hour < 12){document.write("上午好！")} 
+else if (hour < 14){document.write("中午好！")} 
+else if (hour < 17){document.write("下午好！")} 
+else if (hour < 19){document.write("傍晚好！")} 
+else if (hour < 22){document.write("晚上好！")} 
+else {document.write("深夜好！")} 
+
+</script>
+
+</p>
+            <p style="font-size:14px;">欢迎您光临得利网站</p>
+            <p style="font-size:14px;">您好！<span style="color:#514034; font-weight:bold;">{$_SESSION['user_name']}</span></p>
+            </div>
+            <p><eq name="_SESSION['type']" value="1"><a href="__APP__/Member/index.shtml"><else /><a href="__APP__/Company/management.shtml"></eq>我的得利</a> 　　<a href="__APP__/Public/logout">退出</a></p>
+            </if>
+		</div>
+        <div style=" border:#e7dfd2 solid 1px; margin-bottom:8px; text-align:center;">
+       		<p style="line-height:26px; height:26px;">你也可以通过站外账号进行登录!</p>
+        	 <p style="margin-top:3px; margin-bottom:5px;"><a href="/Public/tryOtherLogin/type/sina"><img src="__PUBLIC__/images/btn_sina1.gif" /></a>&nbsp;&nbsp;<a href="/Public/tryOtherLogin/type/qq"><img src="__PUBLIC__/images/btn_qq1.gif" /></a> </p>
+        </div>
+		<div class="rt_c" style="margin-bottom:3px;">
+			<h1>会员服务</h1>
+			<div class="rt_cont">
+				<div class="rtpic"><a href="__APP__/Booking"><img src="__PUBLIC__/images/free.jpg" /></a></div>
+				<div class="mflf">
+					<div class="lf_ms"><a href="__APP__/Booking/index/type/1">马上报名</a></div>
+					<p><a href="__APP__/Booking/index/type/1">设计全程陪同</a><em>/</em><a href="__APP__/Booking/index/type/1">初步装修规划</a></p>
+				</div>
+				<div class="mfsj">
+					<div class="lf_ms"><a href="__APP__/Booking/index/type/3">马上报名</a></div>
+					<p><a href="__APP__/Booking/index/type/3">省千元设计费</a><em>/</em><a href="__APP__/Booking/index/type/3">找最好的图纸</a></p>
+				</div>
+				<div class="mfys">
+					<div class="lf_ms"><a href="__APP__/Booking/index/type/2">马上报名</a></div>
+					<p><a href="__APP__/Booking/index/type/2">获取预算模板</a><em>/</em><a href="__APP__/Booking/index/type/2">避免价格陷阱</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="rt_c">
+			<div class="web_bm">
+				<div class="wb_tit"><img src="__PUBLIC__/images/tip1.jpg" /></div>
+				<div class="wb_tt"><span>最新报名<em>{$bookcout}</em>人</span><span>30天报名<em>{$bookcout}</em>人</span></div>
+				<div class="wb_cont" id="wb_conts">
+                	<ul class="wb_list" >
+                    	<volist name="book" id="vo">
+                    	<li  class="bm_content">
+                        	<span style="width:130px; float:right;">{$vo.mobile|StringsubMobile}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$vo.create_time|toDate="m/d"}</span><span style="">{$vo.user_name|Stringsubname}</span>
+                        </li>
+                           </volist>
+                    </ul>
+					
+				</div>
+				<div class="wb_bmt"><a href="__APP__/Booking"><img src="__PUBLIC__/images/baoming.jpg" /></a></div>
+			</div>
+		</div>
+		<div class="rt_c">
+			<h1>热门促销</h1>
+			<div class="rt_hot">
+				<volist name="hotnews" id="vo">
+                <div class="rt_hline">
+					<div class="hpic">
+						<p><a href="__APP__/News/{$vo.id}.shtml">{$vo.name_1|utf_substr=16}</a></p>
+						<p>{$vo.content_1|strip_tags|utf_substr=28}</p>
+					</div>
+					<div class="htxt"><a href="__APP__/News/{$vo.id}.shtml"><eq name="vo.image" value=""><img src="__PUBLIC__/images/pic2.jpg" width="45" height="45" /><else />
+                    	<img src="__PUBLIC__/upload/Article/l_{$vo.image}" /></eq></a></div>
+				</div>
+				</volist>
+				
+			</div>
+		</div>
+	</div>

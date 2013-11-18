@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/info.css" rel="stylesheet" type="text/css" />
+<title>证书管理</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<script>
+function delAttention(id){
+ if( confirm("是否删除收藏") ){
+  $.post( '__APP__/Member/delAttention',{id:id},function(text ){
+      if( text == 1 ){
+    	  alert("删除成功！");
+    	  window.location.reload();
+      }else{
+    	 alert("删除失败！");
+      }
+  });
+}
+}
+</script>
+</head>
+<body>
+ <include file="Public:top" />
+<div class="container">
+	<div class="info_lf">
+		<h2><img src="__PUBLIC__/images/mypage.jpg" /></h2>
+		<div class="info_c">
+			<div class="info_tit">公司信息管理</div>
+            <p ><a href="__APP__/Company/news">活动管理</a></p>
+			<p ><a href="__APP__/Company/mycase">案例管理</a></p>
+			<p><a href="__APP__/Company/designer">设计师管理</a></p>	
+            <p><a href="__APP__/Company/construction">在建工地</a></p> <p><a href="__APP__/Company/reservation">预约工地</a></p> <p><a href="__APP__/Company/book">预约管理</a></p><p><a href="__APP__/Company/watchlist">收藏管理</a></p>  		
+             <p class="clk"><a href="__APP__/Company/certificate">证书管理</a></p> 
+            <p><a href="__APP__/Company/service">服务承诺</a></p> 
+            <p><a href="__APP__/Company/contact">联系方式</a></p>					
+			<div class="info_tit">账号管理</div>
+			<p ><a href="__APP__/Company/management">公司信息</a></p>
+			<p><a href="__APP__/Company/password">修改密码</a></p>
+		</div>
+	</div>
+	<div class="info_rt">
+		<div class="info_rtit">
+			<div class="inrt_n">证书管理</div>
+			<div class="inrt_r">首页&nbsp;&nbsp; &gt; <a href="javascript:void(0);">个人中心</a> &gt; <a href="javascript:void(0);" >证书管理</a></div>
+		</div>
+		<div class="info_msg"><span class="i_msg2" style="float:right; width:65px;"> <a href="__APP__/Company/addCertificate">添加证书</a></span><span class="i_msg1"><b>证书列表</b></span></div>
+		<div class="info_cont" style="min-height:300px;">
+			<table border="0" cellpadding="0" cellspacing="0" class="info_tab" width="100%">
+				<tr>
+					<td class="tit">序号</td>                                                            
+					<td class="tit">证书名称</td>
+                    <td class="tit">证书图片</td>
+					<td class="tit">发布时间</td>			
+					<td class="tit">操作</td>
+				</tr>
+                <volist name="certificate" id="vo" >
+
+				<tr>
+					                                                                
+					<td class="">{$vo.id}</td>
+					<td class="" style="text-align:left;">&nbsp;&nbsp;{$vo.name}</td>
+					<td class=""><img src="__PUBLIC__/upload/certificate/small/{$vo.image}"  height="80" /></td>
+					<td class="">{$vo.create_time|toDate="Y-m-d"}</td>			
+					<td class=""><a href="__APP__/Company/editCertificate/id/{$vo.id}">修改</a> <a href="__APP__/Company/delCertificate/id/{$vo.id}">删除</a></td>
+				</tr>
+				</volist>
+				<tr>
+					<td colspan="5">		
+			<div id="pagavation" style=" margin-right:20px;">{$page}
+		</div></td>          
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+</body>
+</html>

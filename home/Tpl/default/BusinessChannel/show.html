@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/anli.css" rel="stylesheet" type="text/css" />
+<title>企业频道</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<script>
+	var APP="__APP__";
+</script>
+<script type="text/javascript">
+function add_d(id,com_id){
+	$.post('__APP__/Tool/addReservation',{id:id,com_id:com_id},function(aa){
+		if(aa=='nologin'){
+			alert("未登陆不能预约在建工地!");
+			window.location.href = '__APP__/Public/login';
+		}else if(aa=='ok'){
+			
+			alert("预约成功!");
+		}else if(aa=='have'){
+			alert("已经预约!");
+		}else{
+			alert("预约失败!");
+		}
+	});
+}
+
+	function caseshow(sid)
+      {
+        var subitem=document.getElementById("caselist"+sid);
+		var subitem1=document.getElementById("caselist1"+sid);
+
+      //subitem.style.display=subitem.style.display=='none'?'':'none';
+      if(subitem.style.display=='none'){
+        	subitem.style.display='';
+			subitem1.style.display='none';
+
+       }
+       else{
+       subitem.style.display='none';
+	   subitem1.style.display='';
+
+      }
+     }
+	 function say(){
+		alert("所有的案例都显示了");	 
+	}
+	
+	
+	function designshow(sid)
+      {
+        var subitem=document.getElementById("design"+sid);
+		var subitem1=document.getElementById("design1"+sid);
+
+      //subitem.style.display=subitem.style.display=='none'?'':'none';
+      if(subitem.style.display=='none'){
+        	subitem.style.display='';
+			subitem1.style.display='none';
+
+       }
+       else{
+       subitem.style.display='none';
+	   subitem1.style.display='';
+
+      }
+     }
+	 function says(){
+		alert("所有的设计师都显示了");	 
+	}
+
+</script>
+</head>
+<body>
+ <include file="Public:top" />
+<div class="container">
+	<div class="anli_gg"><eq name="$coms.logo" value=""><img src="__PUBLIC__/upload/logo/thum/{$coms.logo}" /><else /><img src="__PUBLIC__/images/al_logo.jpg" /></eq></div>
+	<include file="Public:meum" />
+	<div class="al_lf">
+		<div class="al_lfcont">
+			<div class="pd_lfc">
+				<div class="pd_big"><img src="__PUBLIC__/upload/company/l_{$pics1['0']['images']}" id="companypic"  /></div>
+				<div class="pd_smll">
+                <volist name="pics1" id="piclist">
+					<div class="pdsmll"><a href="javascript:void(0);" id="xwFocus1_{$i}"  class="<eq name="i" value="1">sdsm</eq>"  onmouseover="javascript:cssShow('isXwFocus1_',{$i},3,'xwFocus1_','sdsm|mid2_1uli2');"><img src="__PUBLIC__/upload/company/s_{$piclist.images}" class="casesshow" title="__PUBLIC__/upload/company/l_{$piclist.images}" /></a></div>
+				</volist>
+				</div>
+				<div class="yhmsg">
+                	<div style="padding-top:35px; padding-left:10px; padding-right:10px;">
+                    	<volist name="alist" id="alist">
+                    	<p style="height:25px; line-height:25px; border-bottom:#CCC dashed 1px;"><span style="float:right">{$alist.create_time|toDate="Y-m-d"}</span><a href="__APP__/BusinessChannel/discountshow/id/{$alist.uid}_{$alist.id}.shtml">{$alist.name_1|utf_substr=34}</a></p>
+                        </volist>
+                    </div>
+                </div>
+			</div>
+			<div class="pd_rtc">
+				<div><img src="__PUBLIC__/images/gsqy.jpg" /></div>
+				<div class="pd_qyc">
+					<p>{$vo.desc|utf_substr=600}</p>
+					<!--<div class="pd_qymsg">
+						<div class="pd_qypic"><img src="__PUBLIC__/images/qypic3.jpg" /></div>
+						<div class="pd_txpic"></div>
+					</div>-->
+				</div>
+				<div><img src="__PUBLIC__/images/qy_bot.jpg" /></div>
+				<div class="qy_tablec">
+					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="gd_table_01">
+						<tr>
+							<td class="tit" align="center" width="35%">在建工地</td>
+							<td class="tit" align="center" width="15%">户型</td>                
+							<td class="tit" align="center" width="25%">参观时间</td>
+							<td class="tit" align="right" width="25%"><a href="__APP__/BusinessChannel/constructionlist/id/{$comid}.shtml"><img src="__PUBLIC__/images/gdmore.jpg" align="bottom" /></a></td>
+						</tr>
+                        <volist name="conlist" id="conlist">
+						<tr>
+							<td align="" width="35%">&nbsp;&nbsp;{$conlist.name_1}</td>
+							<td align="center" width="15%">{$conlist.root_unit}</td>
+							<td align="center" width="25%">{$conlist.visit_time|utf_substr=10}</td>
+							<td align="center" width="25%"><a href="javascript:add_d({$conlist.id},{$vo.uid});"><img src="__PUBLIC__/images/book_sg.jpg" align="bottom" /></a></td>
+						</tr>
+						</volist>
+					</table>
+				</div>
+			</div>	
+			<div><img src="__PUBLIC__/images/alzstit.jpg"></div>
+			<div class="al_lf_c">
+				<div class="xs_mod"  id="caselist1">
+                <volist name="caselist" id="caselist">
+					<div class="xs_mod_m">
+						<a href="__APP__/BusinessChannel/caseshow/id/{$caselist.uid}_{$caselist.id}.shtml"><img src="__PUBLIC__/upload/case/s_{$caselist.id|getCasePic}" /></a>
+						<p><a href="__APP__/BusinessChannel/caseshow/id/{$caselist.uid}_{$caselist.id}.shtml">{$caselist.name_1}</a></p>
+					</div>
+					</volist>
+                    
+					<div class="sub_more"><eq name="caseshow" value="1"><a href="javascript:void(0);" onclick="say()">显示全部案例</a><else /><a href="javascript:void(0);" onclick="caseshow(1)">显示全部案例</a></eq></div>
+				</div> 
+                <div class="xs_mod"  id="caselist11" style="display:none">
+                <volist name="caselists" id="caselist">
+					<div class="xs_mod_m">
+						<a href="__APP__/BusinessChannel/caseshow/id/{$caselist.uid}_{$caselist.id}.shtml"><img src="__PUBLIC__/upload/case/s_{$caselist.id|getCasePic}" /></a>
+						<p><a href="__APP__/BusinessChannel/caseshow/id/{$caselist.uid}_{$caselist.id}.shtml">{$caselist.name_1}</a></p>
+					</div>
+					</volist>
+                    
+					<div class="sub_more"><a href="javascript:void(0);" onclick="caseshow(1)">收回全部案例</a></div>
+				</div>
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg"></div>
+			<div><img src="__PUBLIC__/images/sjs.jpg"></div>
+			<div class="al_lf_c">
+				<div class="sjs_modc" id="design1">
+					
+                    <volist name="designer" id="designer">
+                    
+					<div class="sjs_modle">
+						<a href="__APP__/BusinessChannel/designershow/id/{$designer.uid}_{$designer.id}.shtml"><eq name="designer.image" value=""><img src="__PUBLIC__/images/header2.jpg" /><else /><img src="__PUBLIC__/upload/designer/small/{$designer.image}" /></eq></a>
+						<h5><a href="__APP__/BusinessChannel/designershow/id/{$designer.uid}_{$designer.id}.shtml">[ 详细 ]</a>{$designer.name_1}</h5>
+						<p>案例：<em>{$designer.id|getDesignCase}</em>篇</p>
+						<p>费用：<code></code>{$designer.cost}</p>
+					</div>
+                    </volist>					
+					<div class="sjs_more"><eq name="desgnershow" value="1"><a href="javascript:void(0);" onclick="says()">显示全部设计师</a><else /><a href="javascript:void(0);" onclick="designshow(1)">显示全部案例</a></eq></div>
+				</div>
+                
+                <div class="sjs_modc" id="design11" style="display:none">
+              
+					<volist name="designers" id="designer">
+					<div class="sjs_modle">
+						<a href="__APP__/BusinessChannel/designershow/id/{$designer.uid}_{$designer.id}.shtml"><eq name="designer.image" value=""><img src="__PUBLIC__/images/header2.jpg" /><else /><img src="__PUBLIC__/upload/designer/small/{$designer.image}" /></eq></a>
+						<h5><a href="__APP__/BusinessChannel/designershow/id/{$designer.uid}_{$designer.id}.shtml">[ 详细 ]</a>{$designer.name_1}</h5>
+						<p>案例：<em>{$designer.id|getDesignCase}</em>篇</p>
+						<p>费用：<code></code>{$designer.cost}</p>
+					</div>
+                    </volist>					
+					<div class="sjs_more"><a href="javascript:void(0);" onclick="designshow(1)">收回全部设计师</a></div>
+				</div>
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg"></div>
+		</div>
+	</div>
+	<include file="Public:com_right" />
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+<script>
+ $(document).ready(function() {
+           
+			
+			$(".casesshow").mouseenter(
+                function(){
+                   var a= $(this).attr("title");
+				   $("#companypic").attr("src",a);
+            });
+	
+})
+</script>
+<script>
+function cssShow(itemName,showId,num,bgItemName,clsName)       //(itemName+num)系列栏目名称，showID需要显示的编号
+{
+	var clsNameArr=new Array(2)
+	if(clsName.indexOf("|")<=0){
+		clsNameArr[0]=clsName
+		clsNameArr[1]=""
+	}else{
+		clsNameArr[0]=clsName.split("|")[0]
+		clsNameArr[1]=clsName.split("|")[1]
+	}
+	for(i=1;i<=num;i++)
+	{ 
+//	alert(i);
+		if(document.getElementById(bgItemName+i)!=null)
+			document.getElementById(bgItemName+i).className=clsNameArr[1]
+		
+		if(i==showId)
+		{
+			
+			if(document.getElementById(bgItemName+i)!=null)
+				document.getElementById(bgItemName+i).className=clsNameArr[0]
+		}
+	}
+}
+
+</script>
+</body>
+</html>

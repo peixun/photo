@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/info.css" rel="stylesheet" type="text/css" />
+<title>预约管理</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+<script>
+function delConst(id){
+ if( confirm("是否删除预约工地") ){
+  $.post( '__APP__/Member/delbookDesigner',{id:id},function(text ){
+      if( text == 1 ){
+    	  alert("删除成功！");
+    	  window.location.reload();
+      }else{
+    	 alert("删除失败！");
+      }
+  });
+}
+}
+</script>
+</head>
+<body>
+ <include file="Public:top" />
+<div class="container">
+	<div class="info_lf">
+		<h2><img src="__PUBLIC__/images/mypage.jpg" /></h2>
+		<div class="info_c">
+			<div class="info_tit">预约管理</div>
+               <p ><a href="__APP__/Member/myAnnounce">促销公告&nbsp;{:getDayNewcout()}</a></p>
+            <p><a href="__APP__/Member/news">已报名活动</a></p>
+			<p ><a href="__APP__/Member/myConstruction">已预约工地</a></p>
+            <p class="clk"  ><a href="__APP__/Member/bookDesigner">已预约设计师</a></p>
+			<p><a href="__APP__/Member/myAttention">我的收藏</a></p>		
+			<div class="info_tit">账号管理</div>
+			<p ><a href="__APP__/Member/index">个人信息</a></p>
+			<p><a href="__APP__/Member/password">修改密码</a></p>
+		</div>
+	</div>
+	<div class="info_rt">
+		<div class="info_rtit">
+			<div class="inrt_n">已预约设计师</div>
+			<div class="inrt_r">首页&nbsp;&nbsp; &gt; <a href="__APP__/Member">个人中心</a> &gt; <a href="javascript:void(0);">已预约设计师</a></div>
+		</div>
+		<!--<div class="info_msg"><span class="i_msg1">预约提醒：</span><span class="i_msg2"> 预约工地<em>(3个)</em></span><span class="i_msg2"> 预约设计师<em>(1个)</em></span><span class="i_msg2"> 报名活动<em>(0个)</em></span></div>-->
+		<div class="info_cont" style="min-height:300px;">
+			<table border="0" cellpadding="0" cellspacing="0" class="info_tab" width="100%">
+				<tr>
+					<td class="tit">设计师名称</td>                                                            
+					<td class="tit">设计案例名称</td>
+					<td class="tit">所在公司</td>
+					<td class="tit">预约时间</td>
+					<td class="tit">操作</td>
+				</tr>
+                <volist name="list" id="vo">
+				<tr>
+					<td class="">{$vo.designer_id|getDesinger}</td>                                                                                                                          
+					<td class="">{$vo.case_id|getCaseName}</td>
+					<td class="">{$vo.com_uid|getHomeCompanys}</td>
+					<td class="">{$vo.create_time|toDate='Y-m-d'} </td>
+					
+					<td class=""><a href="javascript:void(0);" onclick="delConst({$vo.id});">取消</a></td>
+				</tr>
+				</volist>
+				<tr>
+					<td colspan="5">		
+			<div id="pagavation"  style=" margin-right:20px;">{$page}
+		</div>&nbsp;&nbsp;&nbsp;&nbsp;</td>                     
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+</body>
+</html>

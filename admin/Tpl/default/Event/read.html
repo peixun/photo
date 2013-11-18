@@ -1,0 +1,30 @@
+<tagLib name="eyoo" />
+<include file="../Public/header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">查看活动信息 [ <A HREF="{:u($module_name.'/index')}">返回列表</A> ]</div>
+<div id="result" class="result none"></div>
+<TABLE cellpadding=3 cellspacing=3 width="100%"> 
+<TR>  
+	<TD ><H2>主题:{$inlist.title} <span style="color:gray;font-weight:normal">[{$inlist.type}]</span></H2> </TD>
+</TR>
+<TR>
+	<TD >
+	<div style="border:1px dotted silver;padding:5px;margin:5px"><img src="__ROOT__/Public/upload/Event/{$inlist.image}" width="110" height="80"><br /><H2>活动简介:</H2>{$inlist.description }<br/><H2>活动详情:</H2>{$inlist.content}<br><H2>活动时间:</H2>{$inlist.start_time|toDate}————{$inlist.end_time|toDate}</div> 	
+	<present name="comments">
+		<div id="comments">
+        <volist name="comment" id="comment">
+				<div style="border:1px dotted silver;padding:5px;margin:5px">
+				<H2>参与详情: <span style="color:gray;font-weight:normal">[{$comment.create_time|toDate='Y-m-d H:i:s'}]</span></H2>		
+				发表人:{$comment.user_id}<br/>回复{$i}:{$comment.content}
+                </div> 	
+			</volist>
+		</div>
+	</present>
+</TD>
+</TR> 
+</TABLE>
+
+
+</div>
+</div>

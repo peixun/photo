@@ -1,0 +1,144 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<load href="__TMPL__ThemeFiles/Js/jquery.js" />
+<load href="__TMPL__ThemeFiles/Js/jquery.json.js" />
+<load href="__TMPL__ThemeFiles/Js/sms.js" />
+<script type="text/javascript" src="__TMPL__ThemeFiles/Js/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__ThemeFiles/Js/calendar/calendar.css' />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">{$Think.lang.ADD_DATA} [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+
+<div id="result" class="result none"></div>
+<form method='post' id="form" name="form" action="{:u('SmsSend/update')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+<tr>
+	<td>
+    	<table cellpadding=3 cellspacing=3 width="100%">
+        	<tr>
+                <td class="tRight" width="100px;">{$Think.lang.SMS_SEND_TITLE}：</td>
+                <td class="tLeft" >
+                    <input type="text" name="send_title" class="bLeft" value="{$vo.send_title}" style="width:80%;" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tRight" width="100px;">短信类型：</td>
+                <td class="tLeft" >
+                    <select name="type" id="type" class="bLeft">
+                    <option value="1" <if condition="$vo['type'] eq 1">selected="selected" </if>>普通短信</option>
+                    <option value="2" <if condition="$vo['type'] eq 2">selected="selected" </if>>商品通知短信</option>
+                    </select>
+                    &nbsp;&nbsp;
+                    <span id="type_rec_id" <if condition="$vo['type'] lt 2">style="display:none;"</if>>商品编号：<input type="text" id="rec_id" name="rec_id" value="{$vo.rec_id}" /></span>
+                </td>
+            </tr>
+            <if condition="$vo['status'] eq 2">
+            <tr>
+                <td class="tRight" width="100px;">重新发送：</td>
+                <td class="tLeft" >
+                    <input type="checkbox" name="status" value="0" />
+                </td>
+            </tr>
+            </if>
+        	<tr id="sent_type_row">
+                <td class="tRight" width="100px;">{$Think.lang.SMS_SEND_TYPE}：</td>
+                <td class="tLeft" >
+                    <select name="send_type" id="send_type" class="bLeft">
+                    <option value="1" <if condition="$vo['send_type'] eq 1">selected="selected" </if>>{$Think.lang.SMS_SEND_TYPE_1}</option>
+                    <option value="2" <if condition="$vo['send_type'] eq 2">selected="selected" </if>>{$Think.lang.SMS_SEND_TYPE_2}</option>
+                    </select>
+                    &nbsp;&nbsp;
+                    <select name="user_group" id="user_group" <if condition="$vo['send_type'] eq 2">style="display:none;"</if>>
+                    <option value="0">{$Think.lang.ALL_USER}</option>
+                    <foreach name="user_group" item="group_item" >
+                        <option value="{$group_item.id}" <if condition="$vo['user_group'] eq $group_item['id']">selected="selected" </if>>{$group_item.name_1}</option>
+                    </foreach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="tRight" width="100px;">{$Think.lang.SMS_SEND_TIME}：</td>
+                <td class="tLeft" >
+                    <INPUT TYPE="text"  name="send_time" id="send_time"  class="bLeft" value="{$vo.send_time|toDate='Y-m-d H:i'}">
+				<input type="button" name="btn_send_time" id="btn_send_time" onclick="return showCalendar('send_time', '%Y-%m-%d %H:%M', false, false, 'btn_send_time');" value="{$Think.lang.SELECT}" class="button"/>
+                </td>
+            </tr>
+        	<tr id="sendContent" <if condition="$vo['type'] gt 1">style="display:none;"</if>>
+                <td class="tRight" width="100px;">{$Think.lang.SMS_SEND_CONTENT}：</td>
+                <td class="tLeft" >
+                	<div style="line-height:20px;">内容字数&nbsp;<strong id="smslength" style="color:#f00;"></strong>，内容条数&nbsp;<strong id="smscount" style="color:#f00;"></strong></div>
+                    <textarea name="send_content" id="send_content" style="width:80%; height:80px;">{$vo.send_content}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="tRight" width="100px;">{$Think.lang.CUSTOM_MOBILE_LIST}：</td>
+                <td class="tLeft" >
+                    <textarea name="custom_mobiles" style="width:80%; height:80px;">{$vo.custom_mobiles}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="tRight" width="100px;">&nbsp;</td>
+                <td class="tLeft" >
+                    {$Think.lang.CUSTOM_MOBILE_LIST_TIP}
+                </td>
+            </tr>
+         </table>
+    </td>
+</tr>
+<tr id="usertr" <if condition="$vo['send_type'] eq 1">style="display:none;"</if>>
+	<td class="tLeft" colspan="2">
+    	<div class="title" style="padding-left:0;">
+    	<div class="fLeft" style="padding-left:20px;">
+        <select name="search_user_group" id="search_user_group">
+        	<option value="0">{$Think.lang.USER_GROUP}</option>
+        	<foreach name="user_group" item="group_item" >
+            <option value="{$group_item.id}">{$group_item.name_1}</option>
+        	</foreach>
+        </select>&nbsp;<input type="text" name="user_name" id="user_name" />&nbsp;</div>
+        <div class="impBtn hMargin fLeft shadow" ><input type="button" name="search" value="查询" class="search imgButton" id="search_user"></div>
+        <div class="blank"></div>
+        <div style="margin:8px 20px;">
+        <table cellspacing='1' cellpadding='3' width="100%">
+            <tr style="text-align:center;">
+            	<th>{$Think.lang.SEND_USER_LIST}(双击添加)</th>
+            	<th>{$Think.lang._EDIT_DATA}</th>
+            	<th>{$Think.lang.SMS_SEND_USER_LIST}(双击删除)</th>
+            </tr>
+            <tr>
+            	<td width="45%" align="center">
+            		<select id="mobile_search_list" size="15" style="width:260px" multiple="true">
+            		</select>
+            	</td>
+            	<td align="center">
+               		<p><input type="button" value="&gt;&gt;" onclick="addMobileAll()" class="button" /></p>
+            		<p><input type="button" value="&gt;" onclick="addMobile()" class="button" /></p>
+            		<p><input type="button" value="&lt;" onclick="resetMobile()" class="button" /></p>
+                    <p><input type="button" value="&lt;&lt;" onclick="resetMobileAll()" class="button" /></p>
+            	</td>
+            	<td width="45%" align="center">
+            		<select name="custom_user_list" id="custom_user_list" multiple="true" size="15" style="width:260px">
+                    <foreach name="user_mobiles" item="user_item" >
+                        <option value="{$user_item.id}">{$user_item.mobile_phone}({$user_item.user_name})</option>
+                    </foreach>
+            		</select>
+            	</td>
+            </tr>
+        </table>
+        </div>
+        </div>
+	</td>
+</tr>
+<tr>
+	<td class="center">
+    	<div style="width:85%;margin:5px; text-align:center;">
+        <input type="hidden" name="id" value="{$vo.id}" />
+        <input type="hidden" name="custom_users" id="custom_users" />
+        <input type="submit" id="submitsms" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" > 
+        </div>
+    </td>
+</tr>
+</form>
+</table>
+</div>
+</div>

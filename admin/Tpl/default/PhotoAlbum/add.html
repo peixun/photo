@@ -1,0 +1,61 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<div id="main" class="main" >
+<div class="content">
+<div class="title">新增相册 [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+  <SCRIPT LANGUAGE="JavaScript">
+
+var URL = '__URL__';
+var APP	 =	 '__APP__';
+var PUBLIC = '__PUBLIC__';
+
+</SCRIPT>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.3.2.min.js"></script>
+ <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Js/kindeditor/kindeditor.js"></script>
+   <script type="text/javascript">
+
+    KE.show({
+        id : 'content1',
+        cssPath : './index.css'
+    });	
+	</script>
+ 
+<form method='post' id="form1" name="form1" action="{:u('PhotoAlbum/insert')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+ 
+	<tr c >
+	  <td class="tRight" width="120">上传图片：</td>
+	  <td colSpan=2>
+	    <table id="tb1" border=0 cellspacing=0 cellpadding=3 >
+	      
+	      <tr  >
+	        
+	        <td  >
+	          <span>相册封面：</span><input id="Filedata"   name="images[]" size=70 type=file value="上 传" name="Filedata " /> <br><br>
+	          <span class="tRight">相册名称</span>： <input maxLength=50  type="text" name='title' size=70        /> 
+	          <div id="tip" class=red></div>
+	          <div id="preview"></div>
+	          </td>
+	        
+	        </tr> 
+	      
+	      </table></td>
+	  </tr>&nbsp;</td>
+	  </tr>
+	  <tr>
+	    <td class="tRight">相册描述：</td>
+	    <td class="tLeft" ><textarea name="descript" id="content1"    style="width:80%; height:200px; padding-left:200px">{$vo.descript}</textarea></td>
+	    </tr>
+	  <td></td>
+	  <td class="center"><div style="width:85%;margin:5px"> 
+	    <input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" >
+	    </div></td>
+</tr>
+
+</table>
+</form>
+
+</div>
+</div>

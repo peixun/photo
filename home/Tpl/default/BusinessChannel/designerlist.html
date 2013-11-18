@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="家居,装潢,室内设计,360得利网" /> 
+<meta name="description" content="家居,装潢,室内设计,360得利网" /> 
+<link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/css/anli.css" rel="stylesheet" type="text/css" />
+<title>设计师</title>
+<script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
+
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
+</script> 
+<![endif]--> 
+
+</head>
+<body>
+<include file="Public:top" />
+<div class="container">
+	<div class="anli_gg"><eq name="$coms.logo" value=""><img src="__PUBLIC__/upload/logo/thum/{$coms.logo}" /><else /><img src="__PUBLIC__/images/al_logo.jpg" /></eq></div>
+	<include file="Public:meum" />
+	<div class="al_lf">
+		<h2>设计师</h2>
+		<div class="al_lfcont">			
+			<div><img src="__PUBLIC__/images/zs_tit.jpg" /></div>
+			<div class="al_lf_c">
+				<volist name="list" id="vo" key="key">
+                <div class="sjs_mod">
+					<div class="sjs_m_lf"><a href="__APP__/BusinessChannel/designershow/id/{$vo.uid}_{$vo.id}.shtml"><eq name="vo.image" value=""><img src="__PUBLIC__/images/header2.jpg" /><else /><img src="__PUBLIC__/upload/designer/small/{$vo.image}" /></eq></a></div>
+					<div class="sjs_m_rt">
+						<h3>设计师： <em>{$vo.name_1}</em></h3>
+						<p>设计费：{$vo.cost}</p>
+						<p>擅长风格：{$vo.good_style|utf_substr=20}</p>
+						<p>从业年限：{$vo.work_years}</p>
+					</div>
+					<div class="sjs_m_det"><em>设计理念：</em>{$vo.content_1|strip_tags|utf_substr=300}</div>
+					<div class="sjs_m_more"><a href="__APP__/BusinessChannel/designershow/id/{$vo.uid}_{$vo.id}.shtml"><img src="__PUBLIC__/images/ckdetail.jpg" /></a></div>
+				</div>
+                <div class="<php>if($key%2===0){ echo 'sjsclear'; }</php>"></div>
+				</volist>
+                
+				
+				
+			</div>
+			<div><img src="__PUBLIC__/images/zs_bot.jpg" /></div>	
+			<div class="al_pages">
+			<div class="al_plf"></div>
+				<div id="pagavation">{$page}</div>
+		</div>				
+		</div>
+	</div>
+	<include file="Public:com_right" />
+</div>
+<div class="clear10"></div>
+ <include file="Public:footer" />
+<script>
+ $(document).ready(function() {
+            $(".sq_model").mouseenter(
+                function(){
+                    $(this).addClass("sq_mod");
+            });
+
+            $(".sq_model").mouseleave(
+                function(){
+                    $(this).removeClass("sq_mod");
+            });
+})
+</script>
+</body>
+</html>

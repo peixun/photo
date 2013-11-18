@@ -1,0 +1,59 @@
+.info_lf{ float:left; width:190px;}
+.info_lf h2{ clear:both; height:46px;}
+.info_lf .info_c{ clear:both; border-bottom:3px solid #7E1A06; border-right:3px solid #7E1A06; border-left:3px solid #7E1A06; padding:2px;}
+.info_lf .info_c .info_tit{ clear:both; height:25px; padding:0 5px; line-height:25px; font-weight:bold; color:#7B1A06; font-size:14px; background:url(../images/mypagetit.jpg) no-repeat; margin-bottom:4px;}
+.info_lf .info_c p{ clear:both;margin-bottom:4px;  height:22px; padding:3px 0 3px 15px;}
+.info_lf .info_c p.clk{ background:url(../images/mypagebg.jpg) no-repeat 0 3px;}
+.info_lf .info_c p a{ line-height:22px; font-size:14px; color:#333;}
+.info_lf .info_c p.clk a{ color:#fff;}
+
+.info_rt{ float:right; width:790px;}
+.info_rt .info_rtit{ clear:both; height:26px; background:url(../images/righttit.jpg) no-repeat; padding:10px; margin-bottom:10px;}
+.info_rt .info_rtit .inrt_n{ float:left; height:26px; line-height:26px; font-weight:bold; color:#891801; font-size:14px;}
+.info_rt .info_rtit .inrt_r{ float:right; height:26px; line-height:26px; text-align:right;color:#A7A7A7;}
+.info_rt .info_rtit .inrt_r a{ padding:0 5px; color:#333;}
+
+.info_msg{ clear:both; margin-bottom:10px; border:1px solid #FFD2B2; background-color:#FEF9EE; line-height:30px; height:30px;}
+.i_msg1{ float:left; padding-left:10px; width:200px; line-height:30px; color:#141414;}
+.i_msg1 em{color:#FF5A00;}
+.i_msg2{ float:left; padding-left:10px; width:130px; line-height:30px; color:#141414;}
+.i_msg2 em{color:#FF5A00;}
+
+.info_cont{ clear:both;}
+.info_tab{ clear:both;}
+.info_tab td{  border:1px solid #D8D1C9; text-align:center; line-height:32px;}
+.info_tab td a{ color:#0491D1;}
+.info_tab td em{ color:#009944;}
+.info_tab td.tit{ font-weight:bold; background:url(../images/info_ttbg.jpg) repeat-x; color:#302218; line-height:28px;}
+
+
+.gr_prt{ padding-left:430px; padding-top:10px; padding-bottom:10px; height:21px;}
+.gr_prt a {display: block; float: left; height: 20px;line-height: 20px; margin-right: 3px; padding: 0 9px; text-decoration: none;}
+.gr_prt a.yes { background-color: #D6CCC1; color: #886A48}
+.gr_prt span{display: block; float: left; height: 20px;line-height: 20px; margin-right: 2px; padding: 0 3px;}
+.al_tztxt {border-color: #90795F #D6CCC1 #D6CCC1 #90795F; border-style: solid; border-width: 1px; height: 19px;  width: 30px;}
+.al_tzbtn { background: url("../images/jump.jpg") no-repeat scroll 0 0 transparent;  border: 0 none; cursor: pointer; height: 20px;  width: 34px;}
+.info_main{ clear:both; border:2px solid #FDCCA4; padding:30px 30px 150px 30px; zoom:1;}
+.info_bd{ clear:both;}
+.info_bd td{ padding:12px; height:24px; color:#74685F;}
+.info_bd td b{color:#522E14;}
+.info_bd td label{ margin-right:10px;}
+.bg_txt{ border:1px solid #C3B6A7; height:22px; padding:0 3px; line-height:22px; width:250px;}
+.bg_txt_small{ border:1px solid #C3B6A7; height:22px; padding:0 3px; line-height:22px; width:150px;}
+.rad{vertical-align: middle; margin-right:5px;}
+.info_mtit{ clear:both; height:27px; background:url(../images/rt_titbg2.jpg) no-repeat; text-align:center;}
+.info_mtit a{ display:block; height:27px; line-height:27px; width:120px; float:left; text-decoration:none; color:#DF6303; font-weight:bold;}
+.info_mtit a.tbg{ width:108px; font-weight:normal; color:#626262;}
+
+.info_mtit1{ clear:both; height:27px; background:url(../images/rt_titbg1.jpg) no-repeat; text-align:center;}
+.info_mtit1 a{ display:block; height:27px; line-height:27px; width:85px; float:left; text-decoration:none;}
+.info_mtit1 a.tbg{ width:108px; color:#DF6303; font-weight:bold;}
+
+
+.bg_textarea { border:1px solid #C3B6A7; height:150px; padding:0 3px; line-height:22px; width:500px;}
+
+.info_rt1{ width:990px;}
+.info_rt1 .info_rtit{ clear:both; height:26px; background:url(../images/righttit.jpg) no-repeat; padding:10px; margin-bottom:10px;}
+.info_rt1 .info_rtit .inrt_n{ float:left; height:26px; line-height:26px; font-weight:bold; color:#891801; font-size:14px;}
+.info_rt1 .info_rtit .inrt_r{ float:right; height:26px; line-height:26px; text-align:right;color:#A7A7A7;}
+.info_rt1 .info_rtit .inrt_r a{ padding:0 5px; color:#333;}

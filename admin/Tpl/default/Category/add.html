@@ -1,0 +1,167 @@
+{// 引入标签库 }
+<tagLib name="eyoo" />
+<include file="Public:header" />
+<div id="main" class="main" >
+<load href="__TMPL__ThemeFiles/Js/jquery.js" />
+<script type="text/javascript" src="__TMPL__ThemeFiles/Js/calendar.php?lang=zh-cn" ></script>
+<load href='__TMPL__ThemeFiles/Js/calendar/calendar.css' />
+  <script>
+  
+  function load(cityId)
+  {
+	  if(cityId==null || cityId=="")
+	  {
+		  return ;
+		  }else{
+ $(document).ready(function() {   
+			$.post('admin.php?m=Category&a=getRegionConf',
+				{pid:$("#pid").val()},
+				function(data)
+				{     
+				$('#city_id').html("<option  value='-1'>选择城市</option>"); 
+					if(data){  
+					eval('var dataobj='+data);  
+					var obj=dataobj.data;  
+					if(obj!=null && obj!= ""){ 
+					str = "<option  value='-1'>请选择</option>"; 
+					for(i in obj)
+					{ 
+					if(cityId == obj[i].id)
+					{
+							str+='<option  selected  value="'+obj[i].id+'">'+obj[i].name+'</option>';
+					}else
+					{
+					str+='<option    value="'+obj[i].id+'">'+obj[i].name+'</option>';
+					}
+					} 
+					$('#city_id').html(str);
+					} 
+					}
+					});
+}) 
+		  }
+	  }
+ 
+ $(document).ready(function() {
+	$("#province_id").change(function(){
+				var id = $(this).val();
+				if(id != ''){
+						$.post("admin.php?m=Category&a=get_city", {id:id}, function(res){
+									
+									$("#city_id").html(res);
+							});
+					}
+		});
+
+$("#city_id").click(function(){	 
+			var city_id = $(this).val();
+			$.post('admin.php?m=Category&a=get_area',{city_id:city_id}, function(res){
+									
+									$("#area_id").html(res);
+							});
+			
+					});
+
+}); 
+
+
+
+</script>
+<script>
+function addFj(){ 
+	  var oTb = document.getElementById("tb1");
+	
+	  var oTr = oTb.insertRow(-1);
+	 
+	  var num = parseInt(document.form1.fjCnt.value)+1; 
+	  var no = parseInt(document.form1.fjCnt.value);
+	  document.form1.fjCnt.value=num;
+	  oTr.insertCell(0).innerHTML = "<span>图片：</span><input id='file' name='images[]' type=file  size='70' /> <input type=button onclick='return delFj(this)' value='删除'><br /><span>说明：</span><input maxLength=50  type='text' name='imgname[]' size=70 name=photo_narrate    /> <br /><div id=tip class=red></div><div id=preview></div>";
+	  return false;
+	}
+	function delFj(obj,No){
+		var num = parseInt(document.form1.fjCnt.value);
+		var new_tr = obj.parentNode.parentNode.parentNode;
+		new_tr.removeChild(obj.parentNode.parentNode);
+		if (num == No){
+			document.form1.fjCnt.value=num-1;
+		}
+		return false;
+	}
+
+</script>
+
+<div class="content">
+<div class="title">{$Think.lang.ADD_DATA} [ <a href="{:u($module_name.'/index')}">{$Think.lang.BACK_LIST}</a> ]</div>
+<div id="result" class="result none"></div>
+<form method='post' id="form1" name="form1" action="{:u('Category/insert')}"  enctype="multipart/form-data">
+<table cellpadding=0 cellspacing=0 class="dataEdit" >
+<TR>
+	<TD class="tRight" width="10%">地区：</TD>
+	<TD class="tLeft" > <div class="row_right"  style="margin-top:5px;"><select  name="province_id" id="province_id" style="width:100px;">
+                  <option value="-1">选择省份</option>
+                  <volist name="regions" id="regions"> <option   
+                    <eq name="regions.city_id|getPid" value="$regions.id"> selected</eq> value="{$regions.id}">{$regions.name}
+                    </option>
+                  </volist> 
+              </select>
+                <select name="city_id" id="city_id" style="width:100px;" class="bLeft">
+                  <option  value='-1'>选择城市</option>            
+                </select> 
+                <select name="area_id" id="area_id" style="width:100px;" class="bLeft">
+                  <option  value='-1'>选择地区</option>            
+                </select></div>
+                </TD>
+</TR>
+<TR>
+	<TD class="tRight" width="10%">小区楼盘名称：</TD>
+	<TD class="tLeft" ><input type="text" name="name_1"  class='bLeftRequire' /></TD>
+</TR>
+<tr>
+	<td class="tRight" width="80">{$Think.lang.SEO_KEYWORD}：</td>
+	<td class="tLeft" >
+		<eyoo:textarea name="seokeyword" class="bLeft" cols="50" rows="2" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight" width="80">{$Think.lang.SEO_CONTENT}：</td>
+	<td class="tLeft" >
+		<eyoo:textarea name="seocontent" class="bLeft" cols="50" rows="2" />
+	</td>
+</tr>
+<tr>
+	<td class="tRight" width="80">小区楼盘介绍：</td>
+
+	<td class="tLeft" >
+		<eyoo:editor  name="content" type="KindEditor" id="content" style="width:650px;height:300px;visibility:hidden;" />
+	</td>
+</tr>
+<tr>
+    <td>小区图片：</td>
+    <td colSpan=2>
+	<table id="tb1" border=0 cellspacing=0 cellpadding=3 >
+	
+	<tr>
+	<td>
+	<span>图片：</span><input id="Filedata"  name="images[]" size=70 type=file value="上 传"  />   <input type=button onclick='return delFj(this)' value='删除'><br />
+	说明：<input maxLength=50  type="text" name='imgname[]' size=70    /> 
+	<div id="tip" class=red></div>
+	<div id="preview"></div>
+	</td>
+	</tr> 
+	
+	</table>
+    <a href="#" onclick="return addFj()">添加一张图片</a><input type="hidden" name="fjCnt" value="" />
+	</td>
+  </tr>
+<tr>
+	<td></td>
+	<td class="center"><div style="width:85%;margin:5px">
+	<input type="submit" value="{$Think.lang.SAVE_DATA}"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="{$Think.lang.RESET_DATA}" > 
+	</div></td>
+</tr>
+</table>
+</form>
+
+</div>
+</div>

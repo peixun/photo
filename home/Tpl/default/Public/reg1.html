@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>精采网</title>
+<link href="__PUBLIC__/css/style.css" type="text/css" rel="stylesheet" />
+<!--[if IE 6]> 
+<script src="__PUBLIC__/js/DD_belatedPNG.js"></script> 
+<script> 
+DD_belatedPNG.fix('.main,.menu_topk,.tishi_content,.tishi_menufoot,.title_c h1,.footer,.left_menu,.check_db a,.title_c2 h1,.zhek_list li .zhe_k,.tis_top,.tis_content,img'); 
+</script> 
+<![endif]--> 
+<script src="__PUBLIC__/js/jquery-1.7.js"></script>
+<SCRIPT src="__PUBLIC__/js/reg.js" type=text/javascript></SCRIPT>
+
+<SCRIPT language=javascript>
+var APP	 =	 '__APP__';
+var PUBLIC	 =	 '__PUBLIC__';
+function fleshVerify(){ 
+//重载验证码
+var timenow = new Date().getTime();
+$('#verifyImg').attr('src','__APP__/Public/Verify/rand/'+timenow);
+
+}
+</SCRIPT>
+<script>
+	function maishow(){
+		document.getElementById('maifang').style.display='block';
+		document.getElementById('smaifang').style.display='none';
+	}
+	
+	function smaishow(){
+		document.getElementById('smaifang').style.display='block';
+		document.getElementById('maifang').style.display='none';
+   }
+
+</script>
+
+<style>
+.menu li .hover_o2{ display:block;}
+</style>
+</head>
+<body>
+	<div class="content_main">
+		<ul class="step_list">
+			<li><a href="#" class="step1"></a></li>
+			<li><img src="__PUBLIC__/images/s.gif" /></li>
+			<li><a href="#" class="step2"></a></li>
+			<li><img src="__PUBLIC__/images/s.gif" /></li>
+			<li><a href="#" class="step3"></a></li>
+			<li><img src="__PUBLIC__/images/s.gif" /></li>
+			<li><a href="#" class="step4"></a></li>
+			<li><img src="__PUBLIC__/images/s.gif" /></li>
+			<li><a href="#" class="step5"></a></li>
+			<li><img src="__PUBLIC__/images/s.gif" /></li>
+			<li><a href="#" class="step6"></a></li>
+			<li><img src="__PUBLIC__/images/s.gif" /></li>
+			<li><a href="#" class="step7"></a></li>
+		</ul>
+        <p class="palce_k"><a href="__APP__/">首页</a>>新用户注册</p>
+        
+        <div class="zuce">
+      
+        <div class="zucelf">
+        	<div style="padding-bottom:10px; padding-left:125px;"><img src="__PUBLIC__/images/zc1.png" /></div>
+             <div class="row_kuang3" style="margin-left:200px; ">
+				<label>&nbsp;</label>
+				<div class="row_right" style="font-size:14px; margin-bottom:3px;"><input name="type" type="radio" value="1" onclick="maishow();" checked="checked"/>  个人&nbsp;&nbsp;&nbsp;<input name="type" type="radio" value="2" onclick="smaishow();"   /> 企业 </div>
+			</div>
+            <div class="zucert" id="maifang">
+               <form name="regForm" method="post" id="regForm" action="__APP__/Public/insertUser">
+            	<div class="regline"><span class="reg_01">登陆账号<samp>*</samp></span> <span class="reg_02"><input type="text" class="text_w9" name="mobile" id="mobile" /></span><span id="mobile_tips"></span></div>
+                      <div class="regline"><span class="reg_01">设置密码<samp>*</samp></span> <span class="reg_02"><input name="user_pwd" id="password" type="password" class="text_w9" /></span><span id="password_tips"></span></div>
+                <div class="regline"><span class="reg_01">确认密码<samp>*</samp></span> <span class="reg_02"><input class="text_w9" name="re_pwd" id="repassword" type="password" /></span><span id="repassword_tips"></span></div>
+                <div class="regline"><span class="reg_01">用户昵称<samp>*</samp></span> <span class="reg_02"><input type="text" class="text_w9" name="user_name" id="user_name" /></span><span id="user_name_tips"></span></div>
+                  <div class="regline"><span class="reg_01">E-mail<samp>*</samp></span> <span class="reg_02"><input type="text" class="text_w9" name="email" id="email" /></span><span id="email_tips"></span>
+                            <div class="clear"></div>
+                            <div class="regline"><span class="reg_01"></span> <span class="reg_02"><input name="" id="checkbox" type="checkbox" value="1" checked="checked"/>&nbsp;&nbsp;我已看过并同意《得利网服务条款》</span></div>
+  <input name="type"  value="1" type="hidden"/>
+        <div class="regline"><span class="reg_01"></span><input type="submit" value="提交" /><a href="__APP__/Public/login"><img src="__PUBLIC__/images/an5.jpg"　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 /></a></div>　 
+              </div></div>
+              </form>
+               <div class="zucert" id="smaifang" style="display:none;">
+                <form name="regForm1" method="post" id="regForm1" action="__APP__/Public/insertUser">
+            	<div class="regline"><span class="reg_01" >登陆账号<samp>*</samp></span> <span class="reg_02"><input type="text" class="text_w9" name="mobile" id="mobiles" /></span><span id="mobiles_tips"></span></div>
+                        <div class="regline"><span class="reg_01">设置密码<samp>*</samp></span> <span class="reg_02"><input name="user_pwd" id="passwords" type="password" class="text_w9" /></span><span id="passwords_tips"></span></div>
+                <div class="regline"><span class="reg_01">确认密码<samp>*</samp></span> <span class="reg_02"><input class="text_w9" name="re_pwd" id="repasswords" type="password" /></span><span id="repasswords_tips"></span></div>
+                     <div class="regline"><span class="reg_01">企业名称<samp>*</samp></span> <span class="reg_02"><input type="text" class="text_w9" name="company_name" id="company_name" /></span><span id="company_name_tips"></span></div>
+                 <div class="regline"><span class="reg_01">负责人名称<samp>*</samp></span> <span class="reg_02"><input type="text" class="text_w9" name="name" id="names" /></span><span id="names_tips"></span></div>
+                  <div class="regline"><span class="reg_01">企业固定电话<samp>*</samp></span> <span class="reg_02"><input type="text" class="text_w9" name="tel" id="tel" /></span><span id="tel_tips"></span></div>
+  
+                <div class="regline"><span class="reg_01">E-mail<samp>*</samp></span> <span class="reg_02"><input type="text" class="text_w9" name="email" id="emails" /></span><span id="emails_tips"></span></div>
+                    <div class="regline"><span class="reg_01"></span> <span class="reg_02"><input name="" id="checkbox" type="checkbox" value="1" checked="checked"/>&nbsp;&nbsp;我已看过并同意《得利网服务条款》</span></div>
+       <input name="type"  value="2" type="hidden"/>
+        <div class="regline"><span class="reg_01"></span><input type="submit" value="提交" />　 <a href="__APP__/Public/login"><img src="__PUBLIC__/images/an5.jpg"　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 /></a></div>　
+              <div class="clear"></div>       
+              </div> 
+        </form>
+        </div>	
+       
+          <div class="zucert" id="maifang">
+          	<div style="padding-left:55px;"><img src="__PUBLIC__/images/zc2.png" /></div>
+            <div class="zucert1" style="height:90px;">
+            	<p style="margin-top:5px;">职业采购人最大的团购折扣保障平台</p>
+                <p>让采购更安全一点</p>
+                <p>针对大宗多产品，长周期的复杂一揽子采购项目，我们提供专业全面的一揽子采购解决方案</p>
+            </div>
+            <div class="clear"></div>
+             <div class="zhucleft">
+             <ul class="zucertrr">
+            	<li><img src="__PUBLIC__/images/zcr1.gif" width="24" height="24" align="absbottom" ><samp>企业团购，折扣返利</samp></li>
+            	<li><img src="__PUBLIC__/images/zcr2.gif" width="24" height="24" align="absbottom" /><samp>点评排名，供应商统一管理</samp></li>
+                <li><img src="__PUBLIC__/images/zcr3.gif" width="24" height="24" align="absbottom" /><samp>履约保障，持续监管</samp></li>
+                <li><img src="__PUBLIC__/images/zcr4.gif" width="24" height="24" align="absbottom" /><samp>指定支付，隐私保护</samp></li>	
+                </ul>
+            </div>
+             </div>
+          
+          <div class="zucert" id="smaifang" style="display:none;">
+          	<div style="padding-left:55px;"><img src="__PUBLIC__/images/zc2.png" /></div>
+            <div class="zucert1">
+            	<p style="margin-top:5px;">为商家找到最优质的买家，客户主动找上门，轻松表达合作意愿，完成全年业务目标，高效实现项目周期跟进和实现快速收款。</p>
+            </div>
+            <div class="clear"></div>
+            <div class="zhucleft">
+             <ul class="zucertrr">
+            	<li><img src="__PUBLIC__/images/zcr1.gif" width="24" height="24" align="absbottom" ><samp>多客户账户统一管理</samp></li>
+            	<li><img src="__PUBLIC__/images/zcr2.gif" width="24" height="24" align="absbottom" /><samp>项目实施进度精确掌控</samp></li>
+                <li><img src="__PUBLIC__/images/zcr3.gif" width="24" height="24" align="absbottom" /><samp>高效率实现催款</samp></li>
+                <li><img src="__PUBLIC__/images/zcr4.gif" width="24" height="24" align="absbottom" /><samp>众多优质高端关键客户，精准直击营销</samp></li>	
+                </ul>
+            </div>
+          </div>
+        	
+        </div>
+        
+        
+        
+	</div>
+	
+
+
+	<div class="left_menu" id="left_menu">	<ul>
+			<li class="select"><a href="__APP__/">首&nbsp;页</a></li>
+			<li><a href="#">娱&nbsp;乐</a></li>
+			<li><a href="#">生&nbsp;活</a></li>
+			<li><a href="#">旅&nbsp;游</a></li>
+			<li><a href="#">网&nbsp;购</a></li>
+			<li><a href="#">其&nbsp;他</a></li>
+		</ul>
+		<p class="pding"><a href="#"><img src="__PUBLIC__/images/top.gif" /></a></p>
+	</div>
+	<div class="check_db" id="right_menu" style="z-index:1;"><a href="#"></a></div>
+</div>
+
+
+</body>
+</html>
