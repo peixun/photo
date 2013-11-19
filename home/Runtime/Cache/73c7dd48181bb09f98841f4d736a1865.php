@@ -6,7 +6,7 @@
 <meta name="description" content="家居,装潢,室内设计,360得利网" /> 
 <link href="__PUBLIC__/css/global.css" rel="stylesheet" type="text/css" />
 <link href="__PUBLIC__/css/info.css" rel="stylesheet" type="text/css" />
-<title>已报名活动</title>
+<title><?php echo ($title); ?></title>
 <script src="__PUBLIC__/js/jquery-1.7.1.min.js"></script> 
 
 <!--[if IE 6]> 
@@ -15,20 +15,33 @@
 DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next,.kuang_f,.link_main,img'); 
 </script> 
 <![endif]--> 
-<script>
-function delBook(id){
- if( confirm("是否删除预约报名") ){
-  $.post( '__APP__/Member/delBook',{id:id},function(text ){
-      if( text == 1 ){
-    	  alert("删除成功！");
-    	  window.location.reload();
-      }else{
-    	 alert("删除失败！");
-      }
-  });
-}
-}
+
+<script type="text/javascript">
+     $(document).ready(function() {
+	$("#province_id").change(function(){
+				var id = $(this).val();
+				if(id != ''){
+						$.post("__APP__/Member/get_city", {id:id}, function(res){
+									
+									$("#city_id").html(res);
+							});
+					}
+		});
+
+$("#city_id").click(function(){	 
+			var city_id = $(this).val();
+			$.post('__APP__/Member/get_area',{city_id:city_id}, function(res){
+									
+									$("#area_id").html(res);
+							});
+			
+					});
+
+}); 
+
+
 </script>
+
 </head>
 <body>
  <SCRIPT src="__PUBLIC__/js/superfish.js" type=text/javascript></SCRIPT>
@@ -72,46 +85,68 @@ function delBook(id){
 		<h2><img src="__PUBLIC__/images/mypage.jpg" /></h2>
 		<div class="info_c">
 			<div class="info_tit">预约管理</div>
-               <p><a href="__APP__/Member/myAnnounce">促销公告&nbsp;<?php echo getDayNewcout();?></a></p>
-            <p class="clk" ><a href="__APP__/Member/news">已报名活动</a></p>
-			<p><a href="__APP__/Member/myConstruction">已预约工地</a></p>
+               <p ><a href="__APP__/Member/myAnnounce">促销公告&nbsp;<?php echo getDayNewcout();?></a></p>
+            <p><a href="__APP__/Member/news">已报名活动</a></p>
+			<p ><a href="__APP__/Member/myConstruction">已预约工地</a></p>
             <p ><a href="__APP__/Member/bookDesigner">已预约设计师</a></p>
-			<p ><a href="__APP__/Member/myAttention">我的收藏</a></p>		
+			<p><a href="__APP__/Member/myAttention">我的收藏</a></p>		
 			<div class="info_tit">账号管理</div>
-			<p ><a href="__APP__/Member/index">个人信息</a></p>
+			<p class="clk"><a href="__APP__/Member/index">个人信息</a></p>
 			<p><a href="__APP__/Member/password">修改密码</a></p>
 		</div>
 	</div>
 	<div class="info_rt">
-		<div class="info_rtit">
-			<div class="inrt_n">已报名活动</div>
-			<div class="inrt_r">首页&nbsp;&nbsp; &gt; <a href="__APP__/Member">个人中心</a> &gt; <a href="javascript:void(0);" >已报名活动</a></div>
+	<div class="info_rtit">
+			<div class="inrt_n">完善用户信息</div>
+			<div class="inrt_r">首页&nbsp;&nbsp; &gt; <a href="__APP__/Member">个人中心</a> &gt; <a href="javascript:void(0)">完善用户信息</a></div>
 		</div>
-		<!--<div class="info_msg"><span class="i_msg1">预约提醒：</span><span class="i_msg2"> 预约工地<em>(3个)</em></span><span class="i_msg2"> 预约设计师<em>(1个)</em></span><span class="i_msg2"> 报名活动<em>(0个)</em></span></div>-->
-		<div class="info_cont" style="min-height:300px;">
-			<table border="0" cellpadding="0" cellspacing="0" class="info_tab" width="100%">
+		<div class="info_mtit"><a href="javascript:void(0)">完善用户信息</a></div>    
+		<div class="info_main">
+			<form name="forme23" id="form23" action="__APP__/Member/doInformation" method="post">
+            <table cellpadding="0" cellspacing="0" border="0" class="info_bd">
 				<tr>
-					<td class="tit">报名类型</td>                                                            
-					<td class="tit">预约单位</td>
-					<td class="tit">预约时间</td>
+					<td width="40%" align="right">真实姓名：</td>
+					<td width="60%"><input type="text"  name="real_name" class="bg_txt_small"  value="<?php echo ($user["real_name"]); ?>"/></td>
+				</tr>
+				<tr>
+					<td width="40%" align="right">性别：</td>
+					<td width="60%"><input name="sex" type="radio" value="1" <?php if(($user["sex"])  ==  "1"): ?>checked="checked"<?php endif; ?> />男 <input name="sex" type="radio" value="2"  <?php if(($user["sex"])  ==  "2"): ?>checked="checked"<?php endif; ?> />女 <input name="sex" type="radio" value="0" <?php if(($user["sex"])  ==  "0"): ?>checked="checked"<?php endif; ?> /> 保密</td>
+				</tr>
+                
+				<tr>
+					<td width="40%" align="right">年龄：</td>
+					<td width="60%"><input type="text" class="bg_txt_small" name="age" value="<?php echo ($user["age"]); ?>"/></td>
+				</tr>
+                 <tr>
+					<td width="40%" align="right">邮编：</td>
+					<td width="60%"><input type="text" class="bg_txt_small" name="zip" value="<?php echo ($user["zip"]); ?>"/></td>
+				</tr>
+                <tr>
+					<td width="40%" align="right">所在地区：</td>
+					<td width="60%">
+                 <div id="uboxstyle"><select name="towns" id="area_id" style="width:100px;" class="bLeft">
+                  <option  value='-1'>选择地区</option> 
+                  <?php if(is_array($city)): $i = 0; $__LIST__ = $city;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$city): ++$i;$mod = ($i % 2 )?><option  value='<?php echo ($city["id"]); ?>' <?php if(($city["id"])  ==  $user["towns"]): ?>selected<?php endif; ?>><?php echo ($city["name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>         
+                </select>
+                </div>
+                </td>
+				</tr>
+                 <tr>
+					<td width="40%" align="right">所在楼盘：</td>
+					<td width="60%"><input type="text" class="bg_txt" name="shequ" value="<?php echo ($user["shequ"]); ?>"/></td>
+				</tr>
+                
+                 <tr>
+					<td width="40%" align="right">收件地址：</td>
+					<td width="60%"><input type="text" class="bg_txt" name="address"  value="<?php echo ($user["address"]); ?>" /></td>
+				</tr>
+                <tr>
+					<td width="40%" align="right"></td>
+					<td width="60%"><input type="submit" class="log_btn11" value="确定"/> &nbsp; <input type="reset" class="log_btn11" value="取消"/></td>
+				</tr>
 				
-					<td class="tit">操作</td>
-				</tr>
-                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): ++$i;$mod = ($i % 2 )?><tr>
-					                                                                
-					<td class=""><?php echo (getBookType($vo["type"])); ?></td>
-					<td class=""><?php echo (getHomeCompanys($vo["select_uid"])); ?></td>
-					
-					<td class=""><?php echo (toDate($vo["create_time"],"Y-m-d")); ?> </td>
-					
-					<td class=""><a href="javascript:void(0);" onclick="delBook(<?php echo ($vo["id"]); ?>);">取消</a></td>
-				</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-				<tr>
-					<td colspan="4">		
-			<div id="pagavation" style=" margin-right:20px;"><?php echo ($page); ?>
-		</div></td>          
-				</tr>
 			</table>
+            </form>
 		</div>
 	</div>
 </div>

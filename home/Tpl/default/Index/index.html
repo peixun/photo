@@ -19,104 +19,10 @@ DD_belatedPNG.fix('.top_k,.top_menu li a,.top_menu,.kuang_m,.date_pre,.date_next
 
 </head>
 <body>
-<include file="Public:top" />
-<div class="container">
-		<div class="hdp">
-        <div style="width:980px; margin:0 auto;">
-        <div id="banner"> 
-                    <div id="banner_bg"></div> 
-                    
-                    <div id="banner_info"></div> 
-                    <ul> 
-                    	<volist name="flashimg" id="flashimg">
-                        	<li>{$i}</li> 
-                		</volist>
-                    </ul> 
-                    <div id="banner_list"> 
-                    	<volist name="flashimgs" id="vo">
-                        <a href="{$vo.url}" >                 
-                        <img src="__PUBLIC__/upload/Flashimg/m_{$vo.image}" /></a>
-                        </volist>
-                    </div> 
-          </div>      
-         <script type="text/javascript">
-				var t = n = 0, count; 
-				$(document).ready(function(){ 
-				count=$("#banner_list a").length; 
-				$("#banner_list a:not(:first-child)").hide(); 
-				$("#banner_info").html($("#banner_list a:first-child").find("img").attr('alt')); 
-				$("#banner_info").click(function(){window.open($("#banner_list a:first-child").attr('href'), "_blank")}); 
-				$("#banner li").click(function() { 
-				var i = $(this).text() - 1;//获取Li元素内的值，即1，2，3，4 
-				n = i; 
-				if (i >= count) return; 
-					$("#banner_info").html($("#banner_list a").eq(i).find("img").attr('alt')); 
-					$("#banner_info").unbind().click(function(){window.open($("#banner_list a").eq(i).attr('href'), "_blank")}) 
-					$("#banner_list a").filter(":visible").fadeOut(500).parent().children().eq(i).fadeIn(1000); 
-					$(this).css({"background":"#631b03",'color':'#fff'}).siblings().css({"background":"#a26721",'color':'#fff'}); 
-				}); 
-					t = setInterval("showAuto()", 4000); 
-					$("#banner").hover(function(){clearInterval(t)}, function(){t = setInterval("showAuto()", 4000);}); 
-				}) 
-				
-				function showAuto() 
-				{ 
-				n = n >=(count - 1) ? 0 : ++n; 
-					$("#banner li").eq(n).trigger('click'); 
-				} 
-			</script> 
-                    </div>
-        </div>
-		<div class="new_c">
-			<h1><a href="__APP__/News/{$recommend_news.id}.shtml">{$recommend_news.name_1|utf_substr=28}</a></h1>
-			<div class="new_cont">
-            	<volist name="news" id="news">
-				 <p>
-				 	<em>2012-04-12</em> 
-					<a href="__APP__/News/{$news.id}.shtml">{$news.name_1}</a>
-				</p>
-                </volist>
-			</div>
-		</div>
-		<div class="clear10"></div>
-		<div class="adertline">
-			<div class="adert1"><img src="__PUBLIC__/images/adert1.png" /></div>
-			<div class="adert2"><img src="__PUBLIC__/images/adert2.png" /></div>
-		</div>
-		<div class="clear10"></div>
-		<div class="adertit"><img src="__PUBLIC__/images/cert1.png" /></div>
-		<div class="adpic"><img src="__PUBLIC__/images/apic.png" /></div>
-		<div class="clear10"></div>
-		<div class="adertit"><img src="__PUBLIC__/images/kctit.png" /></div>
-		<div class="clear10"></div>
-		<div class="ksclass">
-			<div class="kstit">认真考试类</div>
-			<div class="kstot">
-				<p><a href="">CISSP</a><a href="">BS25999</a><a href="">ISO202</a></p>
-				<p><a href="">CISSP</a><a href="">LA</a><a href="">IA/NA</a></p>
-				<p><a href="">CISSA</a><a href="">ITIL</a></p>
-				<p><a href="">COBIT</a><a href="">IOS20071</a></p>
-				<p><a href="">PMP</a><a href="">IA/LA</a></p>
-			</div>
-		</div>
-		<div class="clear10"></div>
-		<div class="adertit"><img src="__PUBLIC__/images/adert3.png" /></div>
-		<div class="clear10"></div>
-		
-		<div class="ksclass">
-			<div class="kstit">认真考试类</div>
-			<div class="kstot">
-				<p><a href="">CISSP</a><a href="">BS25999</a><a href="">ISO202</a></p>
-				<p><a href="">CISSP</a><a href="">LA</a><a href="">IA/NA</a></p>
-				<p><a href="">CISSA</a><a href="">ITIL</a></p>
-				<p><a href="">COBIT</a><a href="">IOS20071</a></p>
-				<p><a href="">PMP</a><a href="">IA/LA</a></p>
-			</div>
-		</div>
-	
-</div>
-<div class="clear10"></div>
-<include file="Public:footer" />
-<script>
+
+
+		<a href="__APP__/Public/reg">注册</a>  <a href="__APP__/Public/login">登录</a>
+
+
 </body>
 </html>

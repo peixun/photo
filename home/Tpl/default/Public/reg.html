@@ -47,13 +47,17 @@ $('#verifyImg').attr('src','__APP__/Public/Verify/rand/'+timenow);
 		<div><a href="__APP__/"><img src="__PUBLIC__/images/zc_tit.jpg" /></a></div>
 		<div class="reg_cc">
 			<div><img src="__PUBLIC__/images/use_zctit.jpg" /></div>
-            <div style="font-size:14px; margin-top:10px;padding-left:160px; color:#180C08"><input name="type" type="radio" value="1" onclick="maishow();" checked="checked"/>  个人&nbsp;&nbsp;&nbsp;<input name="type" type="radio" value="2" onclick="smaishow();"   /> 企业 </div>
+            <div style="font-size:14px; margin-top:10px;padding-left:160px; color:#180C08">
 		<form name="regForm" method="post" id="regForm" action="__APP__/Public/insertUser">
 			<div class="reg_clf" id="maifang">
 				<table border="0" class="reg_table" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+						<td align="right" width="28%">E-mail：</td>
+						<td width="72%"><input type="text" class="log_txt" name="email" id="email"   value="请输入Email" onclick="if(this.value=='请输入Email')this.value='';" onblur="if(this.value=='')this.value='请输入Email';" /><span id="email_tips"></span></td>
+					</tr>
 					<tr>
-						<td align="right" width="28%">登陆账号：</td>
-						<td width="72%"><input type="text" class="log_txt" name="mobile" id="mobile" value="请输入手机号码" onclick="if(this.value=='请输入手机号码')this.value='';" onblur="if(this.value=='')this.value='请输入手机号码';" /><span id="mobile_tips"></span></td>
+						<td align="right" width="28%">手机号码：</td>
+						<td width="72%"><input type="text" class="log_txt" name="mobile" id="mobile" /><span id="mobile_tips"></span></td>
 					</tr>
 					<tr>
 						<td align="right" width="28%">设置密码：</td> 
@@ -67,10 +71,7 @@ $('#verifyImg').attr('src','__APP__/Public/Verify/rand/'+timenow);
 						<td align="right" width="28%">昵称：</td>
 						<td width="72%"><input type="text" class="log_txt"  name="user_name" id="user_name"  /></td>
 					</tr>
-					<tr>
-						<td align="right" width="28%">E-mail：</td>
-						<td width="72%"><input type="text" class="log_txt" name="email" id="email"  /><span id="email_tips"></span></td>
-					</tr>
+					
 					<tr>
 						<td align="right" width="28%">&nbsp;</td>
 						<td width="72%" style="font-size:12px;"><input id="agreement" type="checkbox" value="1" checked="checked" /> 我已看过同意<a href="__APP__/Help/7">《注册服务条款》</a></td>
@@ -80,62 +81,13 @@ $('#verifyImg').attr('src','__APP__/Public/Verify/rand/'+timenow);
 					</tr>
 					<tr>
 						<td align="right" width="28%">&nbsp;</td>
-						<td width="72%" > <input name="type"  value="1" type="hidden"/><input type="submit" class="reg_btn" value="" /></td>
+						<td width="72%" > <input name="type"  value="1" type="hidden"/><input type="submit"  value="注册" /></td>
 					</tr>					
 				</table>
 			</div>
             </form>
-             <form name="regForm1" method="post" id="regForm1" action="__APP__/Public/insertUser">
-            <div class="reg_clf" id="smaifang" style="display:none;">
-				<table border="0" class="reg_table" cellpadding="0" cellspacing="0" width="100%">
-					<tr>
-						<td align="right" width="28%">登陆账号：</td>
-						<td width="72%"><input type="text" class="log_txt"   name="mobile" id="mobiles" value="请输入手机号码" onclick="if(this.value=='请输入手机号码')this.value='';" onblur="if(this.value=='')this.value='请输入手机号码';" /><span id="mobiles_tips"></span></td>
-					</tr>
-					<tr>
-						<td align="right" width="28%">设置密码：</td> 
-						<td width="72%"><input name="user_pwd" id="passwords" type="password" class="log_txt" /><span id="passwords_tips"></span></td>
-					</tr>
-					<tr>
-						<td align="right" width="28%">密码确认：</td> 
-						<td width="72%"><input type="password" class="log_txt" name="re_pwd" id="repasswords" type="password"  /><span id="repasswords_tips"></span></td>
-					</tr>
-					<tr>
-						<td align="right" width="28%">企业名称：</td>
-						<td width="72%"><input type="text" class="log_txt" name="company_name" id="company_name"  /><span id="company_name_tips"></span></td>
-					</tr>
-					<tr>
-						<td align="right" width="28%">负责人名称：</td>
-						<td width="72%"><input type="text" class="log_txt" name="name" id="names"/><span id="names_tips"></span></td>
-					</tr>
-                    	<tr>
-						<td align="right" width="28%">企业固定电话：</td>
-						<td width="72%"><input type="text" class="log_txt" name="tel" id="tel" /><span id="tel_tips"></span></td>
-					</tr>
-                    	<tr>
-						<td align="right" width="28%">E-mail：</td>
-						<td width="72%"><input type="text" class="log_txt" name="email" id="emails" /><span id="emails_tips"></span></td>
-					</tr>
-					<tr>
-						<td align="right" width="28%" style="font-size:12px; padding: 5px 3px;">&nbsp;</td>
-						<td width="72%" style="font-size:12px; padding: 5px 3px;" ><input name="type"  value="2" type="hidden"/><input id="agreement1" type="checkbox" value="1" checked="checked"/>我已看过同意<a href="__APP__/Help/7">《注册服务条款》</a></td>
-					</tr>
-					
-					<tr>
-						<td align="right" width="28%">&nbsp;</td>
-						<td width="72%" ><input name="type"  value="2" type="hidden"/><input type="submit" class="reg_btn" value="" /></td>
-					</tr>					
-				</table>
-			</div>
-          </form>
-			<div class="reg_crt">
-				<p>已经注册得利网用户？</p><br />
-				<p><a href="__APP__/Public/login"><img src="__PUBLIC__/images/loglink.jpg" /></a></p>
-                <p>你也可以通过站外账号进行登录!</p>
-                <p><a href="__APP__/Public/tryOtherLogin/type/sina"><img src="__PUBLIC__/images/btn_sina.gif" /></a> &nbsp;&nbsp;<a href="__APP__/Public/tryOtherLogin/type/qq"><img src="__PUBLIC__/images/qq.png" /></a></p>
-			</div>
-              <div class="clear"></div>
-		</div>
+           
+			
 	</div>
 </div>
 </body>

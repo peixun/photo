@@ -27,7 +27,7 @@ return array (
   'URL_ROUTE' => '1',
   'APP_LOG' => '1',
   'URL_MODEL' => '2',
-  'SHOP_NAME' => '上海培训',
+  'SHOP_NAME' => '360得利网',
   'PAYMENT_SMS' => '1',
   'VERIFY_ON' => '0',
   'RELATE_GOODS_COUNT' => '2',

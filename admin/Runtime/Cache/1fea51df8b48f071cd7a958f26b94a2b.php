@@ -54,41 +54,81 @@ var ATTR_STOCK	=	'<?php echo L("ATTR_STOCK");?>';
 <div id="loader" ><?php echo (L("PAGE_LOADING")); ?></div>
 <div id="main" class="main" >
 <div class="content">
-
-
-<script type="text/javascript" src="__TMPL__ThemeFiles/Js/calendar.php?lang=zh-cn" ></script>
-<script type="text/javascript" src="__PUBLIC__/jscript/city2.js"></script>
-<link rel="stylesheet" type="text/css" href="__TMPL__ThemeFiles/Js/calendar/calendar.css" />
-
-
-<div class="title"><?php echo (L("EDIT_DATA")); ?> [ <a href="<?php echo u($module_name.'/index');?>"><?php echo (L("BACK_LIST")); ?></a> ]</div>
+<div class="title"><?php echo (L("ADD_DATA")); ?> [ <a href="<?php echo u($module_name.'/index');?>"><?php echo (L("BACK_LIST")); ?></a> ]</div>
 <div id="result" class="result none"></div>
-<form method='post' id="form" name="form" action="<?php echo u('Page/update');?>"  enctype="multipart/form-data">
-
+<form method='post' id="form" name="form" action="<?php echo u('User/insert');?>"  enctype="multipart/form-data">
 <table cellpadding=0 cellspacing=0 class="dataEdit" >
+<tr>
+	<td class="tRight" ><?php echo (L("MOBILE_PHONE")); ?>：</td>
+	<td class="tLeft" >
+		<input type="text" name="mobile" class="bLeftRequire" />
+	</td>
+</tr>
 
 <tr>
-	<td class="tRight" width="120">单页名称：</td>
+	<td class="tRight" ><?php echo (L("USER_PWD")); ?>：</td>
 	<td class="tLeft" >
-		<input type="text" name="name_1" class="bLeftRequire" value="<?php echo ($list["name_1"]); ?>" />
+		<input type="password" name="user_pwd" class="bLeftRequire" />
+	</td>
+</tr>
+
+ <tr>
+	<td class="tRight" ><?php echo (L("USER_PWD_CONFIRM")); ?>：</td>
+	<td class="tLeft" >
+		<input type="password" name="user_pwd_confirm" class="bLeftRequire" />
+	</td>
+</tr
+
+><tr>
+	<td class="tRight" >用户类型：</td>
+	<td class="tLeft" >
+		<select name="type" class="bLeft">
+		
+			<option value="1">个人</option>
+            <option value="2">企业</option>
+				
+		</select>
+	</td>
+</tr> 
+<tr>
+	<td class="tRight" width="120">用户昵称：</td>
+	<td class="tLeft" >
+		<input type='text' name='user_name' id='' class='bLeftRequire' value=''  />个人类型请填写
 	</td>
 </tr>
 <tr>
-	<td class="tRight" >单页内容：</td>
+	<td class="tRight" width="120">公司名称：</td>
 	<td class="tLeft" >
-		
-        <script type='text/javascript'>KE.show({id : '_editor',cssPath : '__TMPL__ThemeFiles/Css/style.css',skinType: 'tinymce',allowFileManager : true});</script><div  style='margin-bottom:5px;widht:100%;  '><textarea id='_editor' name='content_1' style='width:650px;height:200px;visibility:hidden;' >注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款注册服务条款</textarea> </div>
+		<input type="text" name="company_name" class="bLeftRequire" />公司类似请填写
 	</td>
 </tr>
+<tr>
+	<td class="tRight" width="120">企业负责人：</td>
+	<td class="tLeft" >
+		<input type="text" name="name" class="bLeftRequire" />公司类似请填写
+	</td>
+</tr>
+<tr>
+	<td class="tRight" width="120">公司电话：</td>
+	<td class="tLeft" >
+		<input type="text" name="tel" class="bLeftRequire" />公司类似请填写
+	</td>
+</tr>
+
+<tr>
+	<td class="tRight" ><?php echo (L("EMAIL")); ?>：</td>
+	<td class="tLeft" >
+		<input type="text" name="email" class="bLeftRequire" />
+	</td>
+</tr>
+
 <tr>
 	<td></td>
 	<td class="center"><div style="width:85%;margin:5px">
-	<input type="hidden" name="id" value="<?php echo ($list["id"]); ?>" />
 	<input type="submit" value="<?php echo (L("SAVE_DATA")); ?>"  class="button small"> <input type="reset" class="button small" onclick="resetEditor()" value="<?php echo (L("RESET_DATA")); ?>" > 
 	</div></td>
 </tr>
-</table>
 </form>
-
+</table>
 </div>
 </div>

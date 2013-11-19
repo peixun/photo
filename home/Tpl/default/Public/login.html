@@ -35,7 +35,7 @@ $('#verifyImg').attr('src','__APP__/Public/Verify/rand/'+timenow);
 				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="log_table">
 					<tr>
 						<td width="17%">用户名</td>
-						<td width="83%"><input type="text" class="log_txt" id="user_name" name="user_name" value="请输入手机号码" onclick="if(this.value=='请输入手机号码')this.value='';" onblur="if(this.value=='')this.value='请输入手机号码';" /></td>
+						<td width="83%"><input type="text" class="log_txt" id="user_name" name="user_name" value="请输入Email" onclick="if(this.value=='请输入Email')this.value='';" onblur="if(this.value=='')this.value='请输入Email';" /></td>
 					</tr>
 					<tr>
 						<td width="17%">密&nbsp;&nbsp;码</td>
@@ -47,7 +47,7 @@ $('#verifyImg').attr('src','__APP__/Public/Verify/rand/'+timenow);
 					</tr>
 					<tr>
 						<td width="17%">&nbsp;</td>
-						<td width="83%" class="fz12"><input name="indexlogin" type="hidden" value="1" /><input type="submit" value="" class="log_btn"/> <a href="__APP__/Public/forgetpw">忘记密码？</a></td>
+						<td width="83%" class="fz12"><input name="indexlogin" type="hidden" value="1" /><input type="submit" value="登录"/> <a href="__APP__/Public/forgetpw">忘记密码？</a></td>
 					</tr>
 				</table>
                 </form>

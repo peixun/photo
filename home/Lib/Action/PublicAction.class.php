@@ -46,25 +46,17 @@ class PublicAction extends BaseAction {
 		 {
 		 	$this->error($User->getError());
   		 }
-         if($_POST['type']==1){
-            $User->active=1;
-         }else{
-            $User->user_name=$_POST['company_name'];
-            $User->status=0;
-         }
+         
+        $User->active=1;
+        
+
+         dump($_POST);
           $User->type=$_POST['type'];
 		  $result = $User->add();
+          echo $User->getlastsql();
+          //exit;
 		  if($result !== null){
-            if($_POST['type']==2){
-                $Company =D("Company");
-                $data['company_name']=$_POST['company_name'];
-                $data['name']=$_POST['name'];
-                $data['email']=$_POST['email'];
-                $data['mobile']=$_POST['mobile'];
-                $data['tel']=$_POST['tel'];
-                $data['uid']=$result;
-                $Company->add($data);
-            }
+           
 
             $refer_url = U('Public/login');
 		  	$this->assign("jumpUrl",$refer_url);
